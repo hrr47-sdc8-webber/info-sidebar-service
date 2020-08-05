@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS zagat;
+
+CREATE DATABASE zagat;
+
+USE zagat;
+
 CREATE TABLE Restaurants (
   Restaurant_ID int NOT NULL AUTO_INCREMENT,
   Restaurant_Name varchar(30) NOT NULL
@@ -6,17 +12,21 @@ CREATE TABLE Restaurants (
 )
 
 CREATE TABLE Addresses (
+  id int NOT NULL AUTO_INCREMENT,
   Street_Address varchar(100) NOT NULL,
   City varchar(25) NOT NULL,
   USA_State varchar(25) NOT NULL,
   Zip_Code int NOT NULL,
   RestaurantID int,
+  PRIMARY KEY (id),
   FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID)
 )
 
 CREATE TABLE Opening_Times (
+  id int NOT NULL AUTO_INCREMENT,
   Weekday_Number int NOT NULL,
   Start_Hour varchar(10) NOT NULL,
   End_Hour varchar(10) NOT NULL,
+  PRIMARY KEY (id),
   FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID)
 )
