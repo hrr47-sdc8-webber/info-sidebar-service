@@ -16,7 +16,7 @@ CREATE TABLE Addresses (
   id int NOT NULL AUTO_INCREMENT,
   Street_Address varchar(100) NOT NULL,
   City varchar(25) NOT NULL,
-  USA_State varchar(25) NOT NULL,
+  USA_State varchar(12) NOT NULL,
   Zip_Code int NOT NULL,
   RestaurantID int,
   PRIMARY KEY (id),
