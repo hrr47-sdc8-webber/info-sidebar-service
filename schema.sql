@@ -26,7 +26,7 @@ CREATE TABLE Addresses (
 CREATE TABLE Opening_Times (
   id int NOT NULL AUTO_INCREMENT,
   RestaurantID int,
-  Weekday_Number int NOT NULL,
+  Weekday varchar(9) NOT NULL,
   Start_Hour char(5) NOT NULL,
   End_Hour char(5) NOT NULL,
   PRIMARY KEY (id),
