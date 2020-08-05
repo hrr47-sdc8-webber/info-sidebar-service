@@ -6,8 +6,9 @@ USE zagat;
 
 CREATE TABLE Restaurants (
   Restaurant_ID int NOT NULL AUTO_INCREMENT,
-  Restaurant_Name varchar(30) NOT NULL
-  Website varchar(50) NOT NULL
+  Restaurant_Name varchar(30) NOT NULL,
+  Website varchar(50) NOT NULL,
+  Telephone varchar(12) NOT NULL,
   PRIMARY KEY (Restaurant_ID)
 )
 
@@ -24,9 +25,10 @@ CREATE TABLE Addresses (
 
 CREATE TABLE Opening_Times (
   id int NOT NULL AUTO_INCREMENT,
+  RestaurantID int,
   Weekday_Number int NOT NULL,
-  Start_Hour varchar(10) NOT NULL,
-  End_Hour varchar(10) NOT NULL,
+  Start_Hour char(5) NOT NULL,
+  End_Hour char(5) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID)
 )
