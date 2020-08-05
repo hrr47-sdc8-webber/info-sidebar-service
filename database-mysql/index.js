@@ -29,6 +29,17 @@ const populateAddresses = function(streetAddress, city, state, zipCode, companyN
   })
 }
 
+const populateStoreHours = function(start, end) {
+  return new Promise(function(resolve, reject) {
+    connection.query(`INSERT INTO Opening_Times(Start_Hour, End_Hour, RestaurantID) VALUES(${start}, ${end}), (SELECT Restaurant_ID FROM Restaurants where Restaurant_Name=${companyName})`, function(error, results, fields) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+}
 
 
 

@@ -25,10 +25,10 @@ CREATE TABLE Addresses (
 
 CREATE TABLE Opening_Times (
   id int NOT NULL AUTO_INCREMENT,
-  RestaurantID int,
-  Weekday varchar(9) NOT NULL,
+  -- Weekday varchar(9) NOT NULL,
   Start_Hour char(5) NOT NULL,
   End_Hour char(5) NOT NULL,
+  RestaurantID int,
   PRIMARY KEY (id),
   FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID)
 )
