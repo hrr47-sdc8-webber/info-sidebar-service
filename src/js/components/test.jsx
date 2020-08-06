@@ -17,6 +17,6 @@ class HelloWorld extends Component {
   }
 }
 
-export default Form;
+export default HelloWorld;
 
-ReactDOM.render(<HeloWorld />, document.getElementById("root"))
+ReactDOM.render(<HelloWorld />, document.getElementById("root"))
