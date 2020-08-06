@@ -1,13 +1,10 @@
 const mysql = require('mysql');
-const mySqlConfig = require('./config.js')
-const faker = require('faker');
-const convenienceFunctions = require('../convenience-functions');
-
-const connection = mysql.createConnection(mysqlConfig);
+const mySqlConfig = require('./config.js');
+const connection = mysql.createConnection(mySqlConfig);
 
 const populateRestaurants = function(companyName, website, phone) {
   return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES(${companyName}, ${website}, ${phone})`, function (error, results, fields) {
+    connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`, function (error, results, fields) {
       if (error) {
         reject(error)
       } else {
@@ -17,9 +14,9 @@ const populateRestaurants = function(companyName, website, phone) {
   })
 }
 
-const populateAddresses = function(streetAddress, city, state, zipCode, companyName) {
+const populateAddresses = function(streetAddress, city, state, zipCode, companyName, id) {
   return new Promise(function(resolve, reject) {
-    connection.query(`INSERT INTO Addresses (Street_Address, City, USA_State, Zip_Code, RestaurantID) VALUES(${streetAddress}, ${city}, ${state}, ${zipCode}, (SELECT Restaurant_ID FROM Restaurants where Restaurant_Name=${companyName}));`, function(error, results, fields) {
+    connection.query(`INSERT INTO Addresses (Street_Address, City, USA_State, Zip_Code, RestaurantID) VALUES("${streetAddress}", "${city}", "${state}", ${zipCode}, ${id});`, function(error, results, fields) {
       if (error) {
         reject(error)
       } else {
@@ -29,9 +26,9 @@ const populateAddresses = function(streetAddress, city, state, zipCode, companyN
   })
 }
 
-const populateStoreHours = function(start, end) {
+const populateStoreHours = function(start, end, companyName, id) {
   return new Promise(function(resolve, reject) {
-    connection.query(`INSERT INTO Opening_Times(Start_Hour, End_Hour, RestaurantID) VALUES(${start}, ${end}), (SELECT Restaurant_ID FROM Restaurants where Restaurant_Name=${companyName})`, function(error, results, fields) {
+    connection.query(`INSERT INTO Opening_Times(Start_Hour, End_Hour, RestaurantID) VALUES("${start}", "${end}", "${id}")`, function(error, results, fields) {
       if (error) {
         reject(error)
       } else {
@@ -41,6 +38,24 @@ const populateStoreHours = function(start, end) {
   })
 }
 
+const populateRatings = function(foodRating, decorRating, serviceRating, writtenReview, companyName, id) {
+  return new Promise(function(resolve, reject) {
+    connection.query(`INSERT INTO Ratings(food_rating, decor_rating, service_rating, written_review, RestaurantID) VALUES("${foodRating}", "${decorRating}", "${serviceRating}", "${writtenReview}", ${id})`, function(error, results, fields) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+}
+
+module.exports = {
+  populateRestaurants,
+  populateAddresses,
+  populateStoreHours,
+  populateRatings
+}
 
 
 
@@ -49,17 +64,3 @@ const populateStoreHours = function(start, end) {
 
 
 
-    //populate data from faker here...
-    let companyName = faker.company.companyName();
-    let website = faker.internet.url();
-    let descriptorOne = faker.company.catchPhraseDescriptor();
-    let descriptorTwo = faker.company.catchPhraseDescriptor();
-    let descriptorThree = faker.company.catchPhraseDescriptor();
-    let streetAddress = faker.address.streetAddress();
-    let city = faker.address.city();
-    let state = faker.address.state();
-    let zip = faker.address.zipCode();
-    let phone = faker.phone.phoneNumber();
-    let scoreOne = convenienceFunctions.generateScore()
-    let scoreTwo = convenienceFunctions.generateScore()
-    let scoreThree = convenienceFunctions.generateScore()
