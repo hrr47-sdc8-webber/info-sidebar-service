@@ -2,9 +2,22 @@ const mysql = require('mysql');
 const mySqlConfig = require('./config.js');
 const connection = mysql.createConnection(mySqlConfig);
 
-const populateRestaurants = function(companyName, website, phone) {
-  return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`, function (error, results, fields) {
+const fetchBaseInfo = function(id) {
+  return new Promise(function(resolve, reject) {
+    connection.query(`SELECT * from Restaurants where Restaurant_ID=${id}`, function(error, results, fields) {
+      if (error) {
+        console.log(error)
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+};
+
+const fetchContactInfo = function(id) {
+  return new Promise(function(resolve, reject) {
+    connection.query(`SELECT Street_Address, City, USA_State, Zip_Code FROM Addresses where RestaurantID=${id};`, function(error, results, fields) {
       if (error) {
         reject(error)
       } else {
@@ -12,7 +25,45 @@ const populateRestaurants = function(companyName, website, phone) {
       }
     })
   })
-}
+};
+
+
+const fetchOpenHoursInfo = function(id) {
+  return new Promise(function(resolve, reject) {
+    connection.query(`SELECT Start_Hour, End_Hour FROM Opening_Times where RestaurantID=${id}`, function(error, results, fields) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+};
+
+const fetchRatingsInfo = function(id) {
+  return new Promise(function(resolve, reject) {
+    connection.query(`SELECT food_rating, decor_rating, service_rating, written_review FROM Ratings where RestaurantID=${id}`, function(error, results, fields) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+};
+
+const populateRestaurants = function(companyName, website, phone) {
+  return new Promise(function (resolve, reject) {
+    connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`, function (error, results, fields) {
+      if (error) {
+        console.log(error)
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+};
 
 const populateAddresses = function(streetAddress, city, state, zipCode, companyName, id) {
   return new Promise(function(resolve, reject) {
@@ -54,7 +105,11 @@ module.exports = {
   populateRestaurants,
   populateAddresses,
   populateStoreHours,
-  populateRatings
+  populateRatings,
+  fetchContactInfo,
+  fetchBaseInfo,
+  fetchOpenHoursInfo,
+  fetchRatingsInfo
 }
 
 
