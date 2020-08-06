@@ -8,11 +8,12 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "start": "nodemon node server/index.js",
     "seed": "node seedData.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production --watch"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mysql": "^2.18.1",

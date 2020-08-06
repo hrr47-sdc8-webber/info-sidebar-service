@@ -4,9 +4,7 @@ const port = 3000;
 const db = require('../database-mysql/index.js');
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(express.static('dist'))
 
 app.get('/restaurants/:id', (req, res) => {
   const Promise1 = Promise.resolve(db.fetchBaseInfo(req.params.id));
