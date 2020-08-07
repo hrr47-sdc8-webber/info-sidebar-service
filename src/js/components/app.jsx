@@ -2,6 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Sidebar from './sidebar.jsx';
 const axios = require('axios');
+import styled from "styled-components";
+
+const Titled =  styled.h1`
+  color: red;
+`;
+
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <h1>Hello World</h1>
+      <Titled>Hello World</Titled>
       <Sidebar data={this.state.sidebarData}/>
       </div>
     );

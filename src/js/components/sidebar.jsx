@@ -1,4 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
+import Schedule from './schedule.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+
+const Wrapper = styled.section`
+  padding: 4em;
+  width: 150px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Row = styled.section`
+  color: #101820;
+  font: 15px 'Calibre-Regular';
+`;
+
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -11,7 +29,7 @@ class Sidebar extends React.Component {
 
   render() {
 
-    let restaurantName, website, telephoneNumber, streetAddress, city, state, zipCode;
+    let restaurantName, website, telephoneNumber, streetAddress, city, state, zipCode, opening, closing;
 
     if (this.props.data.length) {
       restaurantName = this.props.data[0][0].Restaurant_Name;
@@ -21,15 +39,25 @@ class Sidebar extends React.Component {
       city = this.props.data[1][0].City;
       state = this.props.data[1][0].State;
       zipCode = this.props.data[1][0].Zip_Code;
+      opening = this.props.data[2][0].Start_Hour;
+      closing = this.props.data[2][0].End_Hour;
     }
 
     return (
-      <div>
-        {restaurantName}
-        {website}
-        {streetAddress}
-        {zipCode}
-      </div>
+      <Wrapper>
+        <Row>
+          <Schedule opening={opening} closing={closing} />
+        </Row>
+        <Row>
+          {website}
+        </Row>
+        <Row>
+          {streetAddress}
+        </Row>
+        <Row>
+          {zipCode}
+        </Row>
+      </Wrapper>
     );
   }
 }
