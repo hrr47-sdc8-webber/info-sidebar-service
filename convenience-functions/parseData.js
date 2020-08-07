@@ -20,5 +20,5 @@ function convertsFormOfTime(str) {
 
 module.exports = {
   turnsClockTimeIntoTotalMinutes,
-  convertsFormOfTime
+  convertsFormOfTime,
 };

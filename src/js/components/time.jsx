@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
-const helpers =  require('../../../convenience-functions/parseData.js');
 import Schedule from './schedule.jsx';
 import PropTypes from 'prop-types';
 
+const helpers =  require('../../../convenience-functions/parseData.js');
 
 class Time extends React.Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Time extends React.Component {
       if (timeNow >= startTime && timeNow <= endTime) {
         showOpenStatus = <h1 onClick={this.handleClick}>Open Now • {convertedStart} - {convertedEnd}</h1>;
       } else {
-        showOpenStatus = <h1 onClick={this.handleClick}>Closed Now • {convertedEnd} - {convertedEnd}</h1>;
+        showOpenStatus = <h1 onClick={this.handleClick}>Closed Now • {convertedStart} - {convertedEnd}</h1>;
       }
     }
 
@@ -50,7 +50,7 @@ class Time extends React.Component {
       <div>
         <FontAwesomeIcon icon={faClock} />
         {showOpenStatus}
-        <Schedule clicked={clicked} open={convertedStart} close={convertedEnd}/>
+        <Schedule clicked={clicked} open={convertedStart} close={convertedEnd} />
       </div>
 
 

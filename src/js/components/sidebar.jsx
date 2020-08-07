@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import Time from './time.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import Address from './address.jsx';
+import Phone from './phone.jsx';
+import Website from './website.jsx';
 
 const Wrapper = styled.section`
   padding: 4em;
-  width: 250px;
+  width: 400px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -37,7 +40,7 @@ class Sidebar extends React.Component {
       telephoneNumber = this.props.data[0][0].Telephone;
       streetAddress = this.props.data[1][0].Street_Address;
       city = this.props.data[1][0].City;
-      state = this.props.data[1][0].State;
+      state = this.props.data[1][0].USA_State;
       zipCode = this.props.data[1][0].Zip_Code;
       opening = this.props.data[2][0].Start_Hour;
       closing = this.props.data[2][0].End_Hour;
@@ -49,14 +52,11 @@ class Sidebar extends React.Component {
           <Time opening={opening} closing={closing} />
         </Row>
         <Row>
-          {website}
+          <Address streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
         </Row>
-        <Row>
-          {streetAddress}
-        </Row>
-        <Row>
-          {zipCode}
-        </Row>
+        <Phone telephoneNumber={telephoneNumber} />
+        <Website website={website} />
+
       </Wrapper>
     );
   }
