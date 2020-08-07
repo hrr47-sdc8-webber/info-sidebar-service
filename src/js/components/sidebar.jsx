@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Schedule from './schedule.jsx'
+import Time from './time.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 
 const Wrapper = styled.section`
   padding: 4em;
-  width: 150px;
+  width: 250px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ class Sidebar extends React.Component {
     return (
       <Wrapper>
         <Row>
-          <Schedule opening={opening} closing={closing} />
+          <Time opening={opening} closing={closing} />
         </Row>
         <Row>
           {website}
