@@ -6,6 +6,7 @@ import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import Address from './address.jsx';
 import Phone from './phone.jsx';
 import Website from './website.jsx';
+import Directions from './directions.jsx';
 
 const Wrapper = styled.section`
   padding: 4em;
@@ -56,6 +57,7 @@ class Sidebar extends React.Component {
         </Row>
         <Phone telephoneNumber={telephoneNumber} />
         <Website website={website} />
+        <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
 
       </Wrapper>
     );

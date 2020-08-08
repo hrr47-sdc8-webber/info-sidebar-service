@@ -18,7 +18,18 @@ function convertsFormOfTime(str) {
   }
 }
 
+function convertForGoogleDirections(arr) {
+  if (!arr.length) return;
+  let buildString = 'https://www.google.com/maps/dir/?api=1&destination=';
+  for (let i = 0; i < arr.length; i += 1) {
+    const string = arr[i].toString().replace(/\W/g, '+');
+    buildString += `${string},`;
+  }
+  return buildString.substring(0,buildString.length-1)
+}
+
 module.exports = {
   turnsClockTimeIntoTotalMinutes,
   convertsFormOfTime,
+  convertForGoogleDirections,
 };
