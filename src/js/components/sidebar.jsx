@@ -7,6 +7,7 @@ import Address from './address.jsx';
 import Phone from './phone.jsx';
 import Website from './website.jsx';
 import Directions from './directions.jsx';
+import Map from './map.jsx'
 
 const Wrapper = styled.section`
   padding: 4em;
@@ -58,6 +59,7 @@ class Sidebar extends React.Component {
         <Phone telephoneNumber={telephoneNumber} />
         <Website website={website} />
         <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+        <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
 
       </Wrapper>
     );
