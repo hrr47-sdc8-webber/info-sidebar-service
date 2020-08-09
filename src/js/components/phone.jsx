@@ -5,6 +5,10 @@ import styled from 'styled-components';
 const Theme = styled.a`
   color: black;
   text-decoration: none;
+  :hover {
+    color: #ed1212;
+    cursor: pointer;
+  }
 `;
 
 function Phone({ telephoneNumber }) {

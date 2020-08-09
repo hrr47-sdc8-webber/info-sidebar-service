@@ -7,6 +7,10 @@ const Theme = styled.a`
   text-decoration: none;
   padding: 6px 0;
   margin: 0px 0px 8px;
+  :hover {
+    color: #ed1212;
+    cursor: pointer;
+  }
 `;
 
 function Website({ website }) {

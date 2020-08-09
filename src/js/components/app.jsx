@@ -4,10 +4,6 @@ import Sidebar from './sidebar.jsx';
 const axios = require('axios');
 import styled from "styled-components";
 
-const Titled =  styled.h1`
-  color: red;
-`;
-
 class App extends React.Component {
   constructor(props) {
     super(props);

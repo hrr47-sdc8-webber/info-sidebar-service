@@ -6,6 +6,18 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   padding: 6px 0;
+  line-height: 150%;
+`;
+
+const InnerWrapper = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const DotsWrapper = styled.section`
+  overflow: hidden;
+  flex: 1;
 `;
 
 class Schedule extends React.Component {
@@ -18,14 +30,25 @@ class Schedule extends React.Component {
   render() {
     const calendar = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const { clicked, open, close, dayOfTheWeek } = this.props;
+    const dots = '.......................................................................................';
 
     return (
       <Wrapper>
         {clicked
           ? calendar.map((day) => (
             dayOfTheWeek === calendar.indexOf(day)
-              ? <b><div>{day} {open}: {close}</div></b>
-              : <div>{day} {open}: {close}</div>
+              ? (
+                <b>
+                  <InnerWrapper>
+                    <div>{day}</div><DotsWrapper>{dots}</DotsWrapper><div>{open}: {close}</div>
+                  </InnerWrapper>
+                </b>
+              )
+              : (
+                <InnerWrapper>
+                  <div>{day}</div><DotsWrapper>{dots}</DotsWrapper><div>{open}: {close}</div>
+                </InnerWrapper>
+              )
           ))
           : <div />}
       </Wrapper>

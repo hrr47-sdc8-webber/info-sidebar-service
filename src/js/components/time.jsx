@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { farClock } from '@fortawesome/react-fontawesome';
 import Schedule from './schedule.jsx';
 import PropTypes from 'prop-types';
 
-const helpers =  require('../../../convenience-functions/parseData.js');
+const helpers = require('../../../convenience-functions/parseData.js');
 
 class Time extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class Time extends React.Component {
 
     return (
       <div>
-        <FontAwesomeIcon icon={faClock} />
+        <FontAwesomeIcon icon={farClock} />
         {showOpenStatus}
         <Schedule
           clicked={clicked}
@@ -59,9 +59,7 @@ class Time extends React.Component {
           dayOfTheWeek={dayOfTheWeek}
         />
       </div>
-
-
-    )
+    );
   }
 }
 

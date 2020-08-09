@@ -8,6 +8,8 @@ import Phone from './phone.jsx';
 import Website from './website.jsx';
 import Directions from './directions.jsx';
 import Map from './map.jsx';
+import PropTypes from 'prop-types';
+
 
 const Wrapper = styled.section`
   padding: 1em;
@@ -34,24 +36,32 @@ class Sidebar extends React.Component {
     super(props);
 
     this.state = {
-      value: ""
     };
   }
 
   render() {
+    let restaurantName;
+    let website;
+    let telephoneNumber;
+    let streetAddress;
+    let city;
+    let state;
+    let zipCode;
+    let opening;
+    let closing;
 
-    let restaurantName, website, telephoneNumber, streetAddress, city, state, zipCode, opening, closing;
+    const { data } = this.props;
 
-    if (this.props.data.length) {
-      restaurantName = this.props.data[0][0].Restaurant_Name;
-      website = this.props.data[0][0].Website;
-      telephoneNumber = this.props.data[0][0].Telephone;
-      streetAddress = this.props.data[1][0].Street_Address;
-      city = this.props.data[1][0].City;
-      state = this.props.data[1][0].USA_State;
-      zipCode = this.props.data[1][0].Zip_Code;
-      opening = this.props.data[2][0].Start_Hour;
-      closing = this.props.data[2][0].End_Hour;
+    if (data.length) {
+      restaurantName = data[0][0].Restaurant_Name;
+      website = data[0][0].Website;
+      telephoneNumber = data[0][0].Telephone;
+      streetAddress = data[1][0].Street_Address;
+      city = data[1][0].City;
+      state = data[1][0].USA_State;
+      zipCode = data[1][0].Zip_Code;
+      opening = data[2][0].Start_Hour;
+      closing = data[2][0].End_Hour;
     }
 
     return (
@@ -74,10 +84,14 @@ class Sidebar extends React.Component {
         <Row>
           <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
         </Row>
-
       </Wrapper>
     );
   }
 }
+
+Time.propTypes = {
+  data: PropTypes.array.isRequired,
+};
+
 
 export default Sidebar;

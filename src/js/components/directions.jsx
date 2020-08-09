@@ -4,11 +4,14 @@ import styled from 'styled-components';
 
 const helpers = require('../../../convenience-functions/parseData.js');
 
-
 const Theme = styled.a`
   color: black;
   text-decoration: none;
   padding: 6px 0;
+  :hover {
+    color: #ed1212;
+    cursor: pointer;
+  }
 `;
 
 function Directions({ streetAddress, city, state, zipCode }) {

@@ -1,5 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Theme = styled.a`
+  color: black;
+  text-decoration: none;
+  padding: 6px 0;
+  :hover {
+    color: #ed1212;
+    cursor: pointer;
+  }
+`;
 
 class Address extends React.Component {
   constructor(props) {
@@ -13,17 +24,17 @@ class Address extends React.Component {
   handleClick() {
     const { clicked } = this.state;
     this.setState({
-      clicked: !clicked
-    })
+      clicked: !clicked,
+    });
   }
 
   render() {
     const { streetAddress, city, state, zipCode } = this.props;
 
     return (
-      `${streetAddress}, ${city}, ${state}, ${zipCode}, USA`
+      <Theme>{`${streetAddress}, ${city}, ${state}, ${zipCode}, USA`}</Theme>
     );
-  };
+  }
 }
 
 Address.propTypes = {
