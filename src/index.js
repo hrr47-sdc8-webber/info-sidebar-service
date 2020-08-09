@@ -1,1 +1,1 @@
-import HelloWorld from "./js/components/test.jsx";
+import HelloWorld from "./js/components/app.jsx";
