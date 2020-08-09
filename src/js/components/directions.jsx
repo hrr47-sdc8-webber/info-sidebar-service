@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const helpers = require('../../../convenience-functions/parseData.js');
+
+
+const Theme = styled.a`
+  color: black;
+  text-decoration: none;
+`;
 
 function Directions({streetAddress, city, state, zipCode }) {
   const collectedProps = [];
@@ -12,7 +19,9 @@ function Directions({streetAddress, city, state, zipCode }) {
   }
 
   return (
-    <a href={queryString} target="_blank" rel="noreferrer">Get Directions</a>
+    <Theme href={queryString} target="_blank" rel="noreferrer">
+      Get Directions
+    </Theme>
   );
 }
 

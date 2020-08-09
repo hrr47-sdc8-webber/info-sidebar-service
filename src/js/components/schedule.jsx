@@ -1,5 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+
 
 class Schedule extends React.Component {
   constructor(props) {
@@ -13,13 +21,13 @@ class Schedule extends React.Component {
     const { clicked, open, close } = this.props;
 
     return (
-      <div>
+      <Wrapper>
         {clicked
           ? calendar.map((day) => (
-            `${day} ${open}: ${close}`
+            <div>{day} {open}: {close}</div>
           ))
           : <div />}
-      </div>
+      </Wrapper>
     );
   }
 }

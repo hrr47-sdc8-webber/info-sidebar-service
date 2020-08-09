@@ -7,17 +7,21 @@ import Address from './address.jsx';
 import Phone from './phone.jsx';
 import Website from './website.jsx';
 import Directions from './directions.jsx';
-import Map from './map.jsx'
+import Map from './map.jsx';
 
 const Wrapper = styled.section`
-  padding: 4em;
-  width: 400px;
+  padding: 1em;
+  width: 250px;
+  border: 1px solid black;
+  margin: 0 auto;
   background: white;
   display: flex;
   flex-direction: column;
 `;
 
 const Row = styled.section`
+  width: 90%;
+  text-decoration: none;
   color: #101820;
   font: 15px 'Calibre-Regular';
 `;
@@ -56,10 +60,18 @@ class Sidebar extends React.Component {
         <Row>
           <Address streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
         </Row>
-        <Phone telephoneNumber={telephoneNumber} />
-        <Website website={website} />
-        <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
-        <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+        <Row>
+          <Phone telephoneNumber={telephoneNumber} />
+        </Row>
+        <Row>
+          <Website website={website} />
+        </Row>
+        <Row>
+          <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+        </Row>
+        <Row>
+          <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+        </Row>
 
       </Wrapper>
     );

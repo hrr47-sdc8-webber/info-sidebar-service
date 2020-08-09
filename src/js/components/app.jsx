@@ -40,8 +40,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <Titled>Hello World</Titled>
-      <Sidebar data={this.state.sidebarData}/>
+          <Sidebar data={this.state.sidebarData}/>
+
       </div>
     );
   }
