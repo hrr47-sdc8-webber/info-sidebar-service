@@ -3,8 +3,8 @@ function turnsClockTimeIntoTotalMinutes(str) {
   return (Number(splitTime[0]) * 60) + (Number(splitTime[1]));
 }
 
-function convertsFormOfTime(str) {
-  const splitTime = str.split(':');
+function convertsFormOfTime(clockTimeWithAColon) {
+  const splitTime = clockTimeWithAColon.split(':');
   if (Number(splitTime[0]) > 12) {
     splitTime[0] = `${Number(splitTime[0] - 12)}`;
     return `${splitTime[0]}:${splitTime[1]} PM`;
