@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Time from './time.jsx'
+import Time from './time.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import Address from './address.jsx';
@@ -11,21 +11,23 @@ import Map from './map.jsx';
 
 const Wrapper = styled.section`
   padding: 1em;
-  width: 250px;
+  width: 25%;
   border: 1px solid black;
   margin: 0 auto;
   background: white;
   display: flex;
   flex-direction: column;
+  height: 610px;
 `;
 
 const Row = styled.section`
-  width: 90%;
+  width: 100%;
   text-decoration: none;
+  margin-bottom: 8px;
   color: #101820;
   font: 15px 'Calibre-Regular';
+  letter-space: .013em;
 `;
-
 
 class Sidebar extends React.Component {
   constructor(props) {

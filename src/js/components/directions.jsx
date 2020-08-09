@@ -8,9 +8,10 @@ const helpers = require('../../../convenience-functions/parseData.js');
 const Theme = styled.a`
   color: black;
   text-decoration: none;
+  padding: 6px 0;
 `;
 
-function Directions({streetAddress, city, state, zipCode }) {
+function Directions({ streetAddress, city, state, zipCode }) {
   const collectedProps = [];
   let queryString = null;
   if (streetAddress) {

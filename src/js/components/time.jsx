@@ -27,6 +27,7 @@ class Time extends React.Component {
     let showOpenStatus = null;
     let convertedStart = null;
     let convertedEnd = null;
+    let dayOfTheWeek = null;
 
     const { opening, closing } = this.props;
     const { clicked } = this.state;
@@ -34,6 +35,7 @@ class Time extends React.Component {
     if (opening) {
       const today = new Date();
       const timeNow = helpers.turnsClockTimeIntoTotalMinutes(`${today.getHours()}:${today.getMinutes()}`);
+      dayOfTheWeek = today.getDay();
       const startTime = helpers.turnsClockTimeIntoTotalMinutes(opening);
       const endTime = helpers.turnsClockTimeIntoTotalMinutes(closing);
       convertedStart = helpers.convertsFormOfTime(opening);
@@ -50,7 +52,12 @@ class Time extends React.Component {
       <div>
         <FontAwesomeIcon icon={faClock} />
         {showOpenStatus}
-        <Schedule clicked={clicked} open={convertedStart} close={convertedEnd} />
+        <Schedule
+          clicked={clicked}
+          open={convertedStart}
+          close={convertedEnd}
+          dayOfTheWeek={dayOfTheWeek}
+        />
       </div>
 
 

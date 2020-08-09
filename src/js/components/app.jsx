@@ -8,40 +8,38 @@ const Titled =  styled.h1`
   color: red;
 `;
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sidebarData: []
+      sidebarData: [],
     };
 
     this.fetchData = this.fetchData.bind(this);
   }
 
-  fetchData() {
-    axios.get('restaurants/1')
-    .then(data => {
-      this.setState({
-        ...this.state,
-        sidebarData: data.data
-      })
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  componentDidMount() {
+    this.fetchData();
   }
 
-  componentDidMount() {
-    this.fetchData()
+  fetchData() {
+    axios.get('restaurants/1')
+      .then((data) => {
+        this.setState({
+          sidebarData: data.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
+    const { sidebarData } = this.state;
     return (
       <div>
-          <Sidebar data={this.state.sidebarData}/>
-
+        <Sidebar data={sidebarData} />
       </div>
     );
   }
@@ -49,4 +47,4 @@ class App extends React.Component {
 
 export default App;
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById('root'));

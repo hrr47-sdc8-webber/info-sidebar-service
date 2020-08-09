@@ -5,9 +5,8 @@ import styled from 'styled-components';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
+  padding: 6px 0;
 `;
-
-
 
 class Schedule extends React.Component {
   constructor(props) {
@@ -17,14 +16,16 @@ class Schedule extends React.Component {
   }
 
   render() {
-    const calendar = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const { clicked, open, close } = this.props;
+    const calendar = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const { clicked, open, close, dayOfTheWeek } = this.props;
 
     return (
       <Wrapper>
         {clicked
           ? calendar.map((day) => (
-            <div>{day} {open}: {close}</div>
+            dayOfTheWeek === calendar.indexOf(day)
+              ? <b><div>{day} {open}: {close}</div></b>
+              : <div>{day} {open}: {close}</div>
           ))
           : <div />}
       </Wrapper>
@@ -36,6 +37,7 @@ Schedule.propTypes = {
   clicked: PropTypes.bool.isRequired,
   open: PropTypes.string.isRequired,
   close: PropTypes.string.isRequired,
+  dayOfTheWeek: PropTypes.number.isRequired,
 };
 
 export default Schedule;

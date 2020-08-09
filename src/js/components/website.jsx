@@ -5,8 +5,9 @@ import styled from 'styled-components';
 const Theme = styled.a`
   color: black;
   text-decoration: none;
+  padding: 6px 0;
+  margin: 0px 0px 8px;
 `;
-
 
 function Website({ website }) {
   return (
