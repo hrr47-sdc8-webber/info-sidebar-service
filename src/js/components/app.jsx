@@ -68,7 +68,7 @@ class App extends React.Component {
     return (
       <BodyWrapper>
         <Sidebar data={sidebarData} />
-        <RestaurantInfo restaurantName={restaurantName} decor_rating={decor_rating} service_rating={service_rating} food_rating={food_rating} written_review={written_review} />
+        {/* <RestaurantInfo restaurantName={restaurantName} decor_rating={decor_rating} service_rating={service_rating} food_rating={food_rating} written_review={written_review} /> */}
       </BodyWrapper>
     );
   }
