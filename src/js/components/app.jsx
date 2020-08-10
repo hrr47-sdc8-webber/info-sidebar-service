@@ -67,7 +67,7 @@ class App extends React.Component {
           singleSentenceDescriptor: data.data[3][0].singleSentenceDescriptor,
           neighborhood: data.data[3][0].neighborhood,
           typeOfFood: data.data[3][0].typeOfFood,
-          averagePrice: data.data[3][0].averagePrice,
+          averagePrice: data.data[3][0].average_price,
         });
       })
       .catch((error) => {

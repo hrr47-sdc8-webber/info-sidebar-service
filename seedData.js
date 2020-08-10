@@ -12,7 +12,7 @@ while (i < 100) {
   const state = faker.address.state();
   const zip = faker.address.zipCode();
   const phone = faker.phone.phoneNumber();
-  const writtenReview = faker.lorem.paragraph();
+  const writtenReview = faker.lorem.words(80);
   const scoreOne = helpers.generateScore();
   const scoreTwo = helpers.generateScore();
   const scoreThree = helpers.generateScore();
