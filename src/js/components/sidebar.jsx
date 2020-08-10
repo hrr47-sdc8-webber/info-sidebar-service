@@ -10,16 +10,17 @@ import Directions from './directions.jsx';
 import Map from './map.jsx';
 import PropTypes from 'prop-types';
 
-
 const Wrapper = styled.section`
   padding: 1em;
   width: 25%;
   border: 1px solid black;
-  margin: 0 auto;
   background: white;
   display: flex;
   flex-direction: column;
   height: 610px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
 `;
 
 const Row = styled.section`
