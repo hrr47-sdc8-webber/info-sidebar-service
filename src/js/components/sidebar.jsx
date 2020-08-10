@@ -12,15 +12,15 @@ import PropTypes from 'prop-types';
 
 const Wrapper = styled.section`
   padding: 1em;
-  width: 25%;
+  width: 20%;
   border: 1px solid black;
   background: white;
   display: flex;
   flex-direction: column;
   height: 610px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 50px;
+  // position: -webkit-sticky;
+  // position: sticky;
+  // top: 50px;
 `;
 
 const Row = styled.section`

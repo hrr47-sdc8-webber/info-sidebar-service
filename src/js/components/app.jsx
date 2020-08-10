@@ -2,12 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Sidebar from './sidebar.jsx';
+import RestaurantInfo from './restaurantInfo.jsx';
 
 const axios = require('axios');
 
 const BodyWrapper = styled.section`
-  height: 2000px;
+  width: 100%;
   background-color: rgb(250,250,250);
+  display: flex;
+  flex-direction: row;
+  padding: 25px;
 `;
 
 class App extends React.Component {
@@ -29,6 +33,10 @@ class App extends React.Component {
       decor_rating: '',
       service_rating: '',
       written_review: '',
+      singleSentenceDescriptor: '',
+      neighborhood: '',
+      typeOfFood: '',
+      averagePrice: null,
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -56,6 +64,10 @@ class App extends React.Component {
           decor_rating: data.data[3][0].decor_rating,
           service_rating: data.data[3][0].service_rating,
           written_review: data.data[3][0].written_review,
+          singleSentenceDescriptor: data.data[3][0].singleSentenceDescriptor,
+          neighborhood: data.data[3][0].neighborhood,
+          typeOfFood: data.data[3][0].typeOfFood,
+          averagePrice: data.data[3][0].averagePrice,
         });
       })
       .catch((error) => {
@@ -64,11 +76,26 @@ class App extends React.Component {
   }
 
   render() {
-    const { sidebarData } = this.state;
+    const {
+      sidebarData, restaurantName, website, telephoneNumber, streetAddress,
+      city, state, zipCode, opening, closing, food_rating, decor_rating,
+      service_rating, written_review, singleSentenceDescriptor,
+      neighborhood, typeOfFood, averagePrice,
+    } = this.state;
     return (
       <BodyWrapper>
+        <RestaurantInfo
+          restaurantName={restaurantName}
+          decor_rating={decor_rating}
+          service_rating={service_rating}
+          food_rating={food_rating}
+          written_review={written_review}
+          sentence={singleSentenceDescriptor}
+          neighborhood={neighborhood}
+          typeOfFood={typeOfFood}
+          averagePrice={averagePrice}
+        />
         <Sidebar data={sidebarData} />
-        {/* <RestaurantInfo restaurantName={restaurantName} decor_rating={decor_rating} service_rating={service_rating} food_rating={food_rating} written_review={written_review} /> */}
       </BodyWrapper>
     );
   }
