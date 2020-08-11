@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const mySqlConfig = require('./config.js');
+
 const connection = mysql.createConnection(mySqlConfig);
 
 const fetchBaseInfo = function(id) {
@@ -27,29 +28,22 @@ const fetchContactInfo = function(id) {
   })
 };
 
-
-const fetchOpenHoursInfo = function(id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`SELECT Start_Hour, End_Hour FROM Opening_Times where RestaurantID=${id}`, function(error, results, fields) {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-};
+const fetchOpenHoursInfo = (id) =>  new Promise((resolve, reject) => connection.query(`SELECT Start_Hour, End_Hour FROM Opening_Times where RestaurantID=${id}`, (error, results) => {
+  if (error) {
+    reject(error);
+  } else {
+    resolve(results);
+  }
+}));
 
 const fetchRatingsInfo = function(id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`SELECT food_rating, decor_rating, service_rating, written_review FROM Ratings where RestaurantID=${id}`, function(error, results, fields) {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
+  return new Promise((resolve, reject) => connection.query(`SELECT * FROM Ratings where RestaurantID=${id}`, (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  }));
 };
 
 const populateRestaurants = function(companyName, website, phone) {
@@ -89,17 +83,26 @@ const populateStoreHours = function(start, end, companyName, id) {
   })
 }
 
-const populateRatings = function(foodRating, decorRating, serviceRating, writtenReview, companyName, id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`INSERT INTO Ratings(food_rating, decor_rating, service_rating, written_review, RestaurantID) VALUES("${foodRating}", "${decorRating}", "${serviceRating}", "${writtenReview}", ${id})`, function(error, results, fields) {
+const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
+  companyName, averagePrice, singleSentenceDescriptor,
+  neighborhood, typeOfFood, id) => new Promise((resolve, reject) => {
+  connection.query(
+    `INSERT INTO Ratings (
+        food_rating, decor_rating, service_rating,
+        written_review, average_price, singleSentenceDescriptor,
+        neighborhood, typeOfFood, RestaurantID)
+        VALUES("${foodRating}", "${decorRating}", "${serviceRating}",
+        "${writtenReview}", "${averagePrice}", "${singleSentenceDescriptor}",
+        "${neighborhood}", "${typeOfFood}", ${id})`,
+    (error, results) => {
       if (error) {
-        reject(error)
+        reject(error);
       } else {
-        resolve(results)
+        resolve(results);
       }
-    })
-  })
-}
+    },
+  );
+});
 
 module.exports = {
   populateRestaurants,
@@ -109,13 +112,5 @@ module.exports = {
   fetchContactInfo,
   fetchBaseInfo,
   fetchOpenHoursInfo,
-  fetchRatingsInfo
-}
-
-
-
-
-
-
-
-
+  fetchRatingsInfo,
+};
