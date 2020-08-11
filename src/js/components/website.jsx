@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faColumns } from '@fortawesome/free-solid-svg-icons';
+
 
 const Theme = styled.a`
   color: black;
@@ -11,11 +14,16 @@ const Theme = styled.a`
     color: #ed1212;
     cursor: pointer;
   }
+
+  & .icons {
+    margin-right: 24px;
+  }
 `;
 
 function Website({ website }) {
   return (
     <Theme href={`${website}`}>
+      <FontAwesomeIcon className="icons" icon={faColumns} />
       {website}
     </Theme>
   );

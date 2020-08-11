@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Theme = styled.a`
   color: black;
   text-decoration: none;
-  padding: 6px 0;
+  padding-bottom: 5px;
   :hover {
     color: #ed1212;
     cursor: pointer;
@@ -32,7 +34,10 @@ class Address extends React.Component {
     const { streetAddress, city, state, zipCode } = this.props;
 
     return (
-      <Theme>{`${streetAddress}, ${city}, ${state}, ${zipCode}, USA`}</Theme>
+      <div className="items">
+        <FontAwesomeIcon className="icons" icon={faMapMarkerAlt} />
+        <Theme>{`  ${streetAddress}, ${city}, ${state}, ${zipCode}, USA`}</Theme>
+      </div>
     );
   }
 }

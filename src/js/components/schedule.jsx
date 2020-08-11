@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 6px 0;
   line-height: 150%;
+  padding: ${(props) => (props.clicked ? '10px 0px' : '0px')};
 `;
 
 const InnerWrapper = styled.section`
@@ -14,6 +14,7 @@ const InnerWrapper = styled.section`
   flex-direction: row;
   justify-content: space-between;
   width: 80%;
+  margin-left: 37px;
 `;
 
 const DotsWrapper = styled.section`
@@ -34,7 +35,7 @@ class Schedule extends React.Component {
     const dots = '.......................................................................................';
 
     return (
-      <Wrapper>
+      <Wrapper clicked={clicked}>
         {clicked
           ? calendar.map((day) => (
             dayOfTheWeek === calendar.indexOf(day)

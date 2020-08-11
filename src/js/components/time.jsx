@@ -45,14 +45,14 @@ class Time extends React.Component {
       if (timeNow >= startTime && timeNow <= endTime) {
         showOpenStatus = <h1 className="status" onClick={this.handleClick}>Open Now • {convertedStart} - {convertedEnd}</h1>;
       } else {
-        showOpenStatus = <h1 onClick={this.handleClick}>Closed Now • {convertedStart} - {convertedEnd}</h1>;
+        showOpenStatus = <h1 className="status" onClick={this.handleClick}>Closed Now • {convertedStart} - {convertedEnd}</h1>;
       }
     }
 
     return (
     <>
       <div className="items">
-        <FontAwesomeIcon icon={faClock} />
+        <FontAwesomeIcon className="icons" icon={faClock} />
         { showOpenStatus}
       </div>
       <Schedule

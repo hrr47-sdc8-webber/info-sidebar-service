@@ -11,7 +11,7 @@ import Map from './map.jsx';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.section`
-  padding: 1em;
+  padding: 24px 32px;
   width: 25%;
   margin-top: 20px;
   border: 1px solid black;
@@ -25,8 +25,9 @@ const Wrapper = styled.section`
   & .row {
     width: 100%;
     text-decoration: none;
-    margin-bottom: 8px;
-    font: 15px 'Calibre-Regular';
+    margin-top: 13px;
+    margin-bottom: 13px;
+    font: 13.5px 'Calibre-Regular';
     letter-space: .013em;
   }
 
@@ -34,8 +35,16 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding-right: 20%;
+    padding-right: 5%;
+  }
+
+  & .row .items .status {
+    font-size: 15px;
+    margin: 0px;
+  }
+
+  & .row .items .icons {
+    margin-right: 24px;
   }
 `;
 

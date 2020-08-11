@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDirections } from '@fortawesome/free-solid-svg-icons';
+
 
 const helpers = require('../../../convenience-functions/parseData.js');
 
@@ -11,6 +14,10 @@ const Theme = styled.a`
   :hover {
     color: #ed1212;
     cursor: pointer;
+  }
+
+  & .icons {
+    margin-right: 24px;
   }
 `;
 
@@ -24,6 +31,7 @@ function Directions({ streetAddress, city, state, zipCode }) {
 
   return (
     <Theme href={queryString} target="_blank" rel="noreferrer">
+      <FontAwesomeIcon className="icons" icon={faDirections} />
       Get Directions
     </Theme>
   );
