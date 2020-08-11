@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { farClock } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import Schedule from './schedule.jsx';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const helpers = require('../../../convenience-functions/parseData.js');
 
@@ -42,23 +43,25 @@ class Time extends React.Component {
       convertedEnd = helpers.convertsFormOfTime(closing);
 
       if (timeNow >= startTime && timeNow <= endTime) {
-        showOpenStatus = <h1 onClick={this.handleClick}>Open Now • {convertedStart} - {convertedEnd}</h1>;
+        showOpenStatus = <h1 className="status" onClick={this.handleClick}>Open Now • {convertedStart} - {convertedEnd}</h1>;
       } else {
         showOpenStatus = <h1 onClick={this.handleClick}>Closed Now • {convertedStart} - {convertedEnd}</h1>;
       }
     }
 
     return (
-      <div>
-        <FontAwesomeIcon icon={farClock} />
-        {showOpenStatus}
-        <Schedule
-          clicked={clicked}
-          open={convertedStart}
-          close={convertedEnd}
-          dayOfTheWeek={dayOfTheWeek}
-        />
+    <>
+      <div className="items">
+        <FontAwesomeIcon icon={faClock} />
+        { showOpenStatus}
       </div>
+      <Schedule
+        clicked={clicked}
+        open={convertedStart}
+        close={convertedEnd}
+        dayOfTheWeek={dayOfTheWeek}
+      />
+    </>
     );
   }
 }

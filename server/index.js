@@ -4,6 +4,9 @@ const port = 3000;
 const db = require('../database-mysql/index.js');
 
 app.use(express.static('dist'));
+app.use(express.static('public'));
+
+
 
 app.get('/restaurants/:id', (req, res) => {
   const Promise1 = Promise.resolve(db.fetchBaseInfo(req.params.id));
@@ -19,6 +22,9 @@ app.get('/restaurants/:id', (req, res) => {
       res.end('Error occurred during fetch.');
     });
 });
+
+
+
 
 
 

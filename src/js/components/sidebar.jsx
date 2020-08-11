@@ -10,26 +10,35 @@ import Directions from './directions.jsx';
 import Map from './map.jsx';
 import PropTypes from 'prop-types';
 
-
 const Wrapper = styled.section`
   padding: 1em;
   width: 25%;
+  margin-top: 20px;
   border: 1px solid black;
-  margin: 0 auto;
   background: white;
   display: flex;
   flex-direction: column;
-  height: 610px;
+  // position: -webkit-sticky;
+  // position: sticky;
+  // top: 50px;
+
+  & .row {
+    width: 100%;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font: 15px 'Calibre-Regular';
+    letter-space: .013em;
+  }
+
+  & .row .items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20%;
+  }
 `;
 
-const Row = styled.section`
-  width: 100%;
-  text-decoration: none;
-  margin-bottom: 8px;
-  color: #101820;
-  font: 15px 'Calibre-Regular';
-  letter-space: .013em;
-`;
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -66,24 +75,24 @@ class Sidebar extends React.Component {
 
     return (
       <Wrapper>
-        <Row>
+        <div className="row">
           <Time opening={opening} closing={closing} />
-        </Row>
-        <Row>
+        </div>
+        <div className="row">
           <Address streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
-        </Row>
-        <Row>
+        </div>
+        <div className="row">
           <Phone telephoneNumber={telephoneNumber} />
-        </Row>
-        <Row>
+        </div>
+        <div className="row">
           <Website website={website} />
-        </Row>
-        <Row>
+        </div>
+        <div className="row">
           <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
-        </Row>
-        <Row>
+        </div>
+        <div className="row">
           <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
-        </Row>
+        </div>
       </Wrapper>
     );
   }

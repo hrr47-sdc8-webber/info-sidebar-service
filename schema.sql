@@ -35,7 +35,11 @@ CREATE TABLE Ratings (
   food_rating char(3) NOT NULL,
   decor_rating char(3) NOT NULL,
   service_rating char(3) NOT NULL,
-  written_review varchar(500) NOT NULL,
+  written_review varchar(800) NOT NULL,
+  average_price int NOT NULL,
+  singleSentenceDescriptor varchar(100) NOT NULL,
+  neighborhood varchar(25) NOT NULL,
+  typeOfFood varchar(25) NOT NULL,
   RestaurantID int,
   PRIMARY KEY (id)
 );

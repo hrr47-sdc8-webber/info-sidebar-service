@@ -38,9 +38,18 @@ function convertForGoogleMaps(arr) {
   return buildString.substring(0,buildString.length-1)
 }
 
+function determinesExpense(num) {
+  if (num < 50) return '$';
+  if (num < 125) return '$$';
+  if (num < 250) return '$$$';
+  if (num < 500) return '$$$$';
+  return '$$$$$';
+}
+
 module.exports = {
   turnsClockTimeIntoTotalMinutes,
   convertsFormOfTime,
   convertForGoogleDirections,
   convertForGoogleMaps,
+  determinesExpense,
 };

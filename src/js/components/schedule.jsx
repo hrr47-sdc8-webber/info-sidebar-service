@@ -13,6 +13,7 @@ const InnerWrapper = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 80%;
 `;
 
 const DotsWrapper = styled.section`
