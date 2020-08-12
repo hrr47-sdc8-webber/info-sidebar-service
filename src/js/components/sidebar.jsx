@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Time from './time.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
@@ -9,45 +9,6 @@ import Website from './website.jsx';
 import Directions from './directions.jsx';
 import Map from './map.jsx';
 import PropTypes from 'prop-types';
-
-const Wrapper = styled.section`
-  padding: 24px 32px;
-  width: 25%;
-  margin-top: 20px;
-  border: 1px solid black;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  // position: -webkit-sticky;
-  // position: sticky;
-  // top: 50px;
-
-  & .row {
-    width: 100%;
-    text-decoration: none;
-    margin-top: 13px;
-    margin-bottom: 13px;
-    font: 13.5px 'Calibre-Regular';
-    letter-space: .013em;
-  }
-
-  & .row .items {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-right: 5%;
-  }
-
-  & .row .items .status {
-    font-size: 15px;
-    margin: 0px;
-  }
-
-  & .row .items .icons {
-    margin-right: 24px;
-  }
-`;
-
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -110,6 +71,91 @@ class Sidebar extends React.Component {
 Time.propTypes = {
   data: PropTypes.array.isRequired,
 };
+
+const rotateUp = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(0deg);
+  }
+
+  30% {
+    transform: rotate(-180deg);
+  }
+
+  50% {
+    transform: rotate(-180deg);
+  }
+
+  70% {
+    transform: rotate(-180deg);
+  }
+
+  90% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+`
+
+
+const Wrapper = styled.section`
+  padding: 24px 32px;
+  width: 25%;
+  margin-top: 20px;
+  border: 1px solid black;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  // position: -webkit-sticky;
+  // position: sticky;
+  // top: 50px;
+
+  & .row {
+    width: 100%;
+    text-decoration: none;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    font: 13.5px 'Calibre-Regular';
+    letter-space: .013em;
+  }
+
+  & .row .items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 5%;
+  }
+
+  & .row .items .status {
+    font-size: 15px;
+    margin: 0px;
+  }
+
+  & .row .items .icons {
+    margin-right: 24px;
+
+  }
+
+  & .row .items .arrow {
+    display: inline-block;
+    margin-left: 5px;
+    animation: ${rotateUp} 700ms linear infinite;
+    animation-play-state: paused;
+  }
+
+  & .row .items .flip {
+    animation-play-state: running;
+  }
+
+
+`;
+
+
 
 
 export default Sidebar;

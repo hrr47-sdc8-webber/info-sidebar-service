@@ -1,9 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
-import Schedule from './schedule.jsx';
+import { faClock, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import Schedule from './schedule.jsx';
 import styled from 'styled-components';
+
+
 
 const helpers = require('../../../convenience-functions/parseData.js');
 
@@ -13,6 +15,7 @@ class Time extends React.Component {
 
     this.state = {
       clicked: false,
+      animate: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -21,8 +24,15 @@ class Time extends React.Component {
     const { clicked } = this.state;
     this.setState({
       clicked: !clicked,
+      animate: true,
     });
+    setTimeout(() => {
+      this.setState({
+        animate: false,
+      });
+    }, 350);
   }
+
 
   render() {
     let showOpenStatus = null;
@@ -31,7 +41,7 @@ class Time extends React.Component {
     let dayOfTheWeek = null;
 
     const { opening, closing } = this.props;
-    const { clicked } = this.state;
+    const { clicked, animate } = this.state;
 
     if (opening) {
       const today = new Date();
@@ -43,9 +53,9 @@ class Time extends React.Component {
       convertedEnd = helpers.convertsFormOfTime(closing);
 
       if (timeNow >= startTime && timeNow <= endTime) {
-        showOpenStatus = <h1 className="status" onClick={this.handleClick}>Open Now • {convertedStart} - {convertedEnd}</h1>;
+        showOpenStatus = <h1 className="status" onClick={() => {this.handleClick()}}>Open Now • {convertedStart} - {convertedEnd}    </h1>;
       } else {
-        showOpenStatus = <h1 className="status" onClick={this.handleClick}>Closed Now • {convertedStart} - {convertedEnd}</h1>;
+        showOpenStatus = <h1 className="status" onClick={() => {this.handleClick()}}>Closed Now • {convertedStart} - {convertedEnd}    </h1>;
       }
     }
 
@@ -54,6 +64,12 @@ class Time extends React.Component {
       <div className="items">
         <FontAwesomeIcon className="icons" icon={faClock} />
         { showOpenStatus}
+        <FontAwesomeIcon
+          icon={faCaretDown}
+          onClick={() => this.handleClick()}
+          className={animate ? 'arrow flip' : 'arrow' }
+          onAnimationEnd={() => this.setState({ animate: false })}
+        />
       </div>
       <Schedule
         clicked={clicked}
