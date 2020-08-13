@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import Modal from './modal.jsx';
 
 const Theme = styled.a`
   color: black;
@@ -19,8 +20,10 @@ class Address extends React.Component {
     super(props);
     this.state = {
       clicked: false,
+      open: false,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.delayedHandleClick = this.delayedHandleClick.bind(this);
   }
 
   handleClick() {
@@ -30,13 +33,32 @@ class Address extends React.Component {
     });
   }
 
+  delayedHandleClick() {
+    const { open } = this.state;
+    this.setState({
+      open: !open,
+    });
+    setTimeout(this.handleClick, 400);
+  }
+
   render() {
-    const { streetAddress, city, state, zipCode } = this.props;
+    const { streetAddress, city, state, zipCode, restaurantName } = this.props;
+    const { clicked, open } = this.state;
 
     return (
       <div className="items">
-        <FontAwesomeIcon className="icons" icon={faMapMarkerAlt} />
-        <Theme>{`  ${streetAddress}, ${city}, ${state}, ${zipCode}, USA`}</Theme>
+        <Modal
+          open={open}
+          handleClick={this.delayedHandleClick}
+          restaurantName={restaurantName}
+          streetAddress={streetAddress}
+          city={city}
+          state={state}
+          zipCode={zipCode}
+          clicked={clicked}
+        />
+        <FontAwesomeIcon onClick={() => { this.delayedHandleClick(); }} className="icons" icon={faMapMarkerAlt} />
+        <Theme onClick={() => { this.delayedHandleClick(); }}>{`  ${streetAddress}, ${city}, ${state}, ${zipCode}, USA`}</Theme>
       </div>
     );
   }
@@ -47,6 +69,7 @@ Address.propTypes = {
   city: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,
   zipCode: PropTypes.number.isRequired,
+  restaurantName: PropTypes.string.isRequired,
 };
 
 export default Address;
