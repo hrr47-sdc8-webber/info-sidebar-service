@@ -48,7 +48,8 @@ class App extends React.Component {
   }
 
   fetchData() {
-    axios.get('restaurants/1')
+    console.log(window.location.pathname)
+    axios.get(`restaurants${window.location.pathname}`)
       .then((data) => {
         this.setState({
           sidebarData: data.data,
