@@ -62,7 +62,11 @@ class Time extends React.Component {
     return (
     <>
       <div className="items">
-        <FontAwesomeIcon className="icons" icon={faClock} />
+        <FontAwesomeIcon
+          className="icons"
+          icon={faClock}
+          onClick={() => this.handleClick()}
+        />
         { showOpenStatus}
         <FontAwesomeIcon
           icon={faCaretDown}
