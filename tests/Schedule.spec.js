@@ -14,6 +14,7 @@ describe('Schedule', () => {
       open: '8:30',
       close: '7:30',
       dayOfTheWeek: 2,
+      id: Math.random(),
     };
     const schedule = shallow(<Schedule {...scheduleProps} />);
     expect(schedule.contains('Sunday')).toEqual(false);
@@ -25,6 +26,7 @@ describe('Schedule', () => {
       open: '8:30',
       close: '7:30',
       dayOfTheWeek: 2,
+      id: Math.random(),
     };
     const schedule = shallow(<Schedule {...scheduleProps} />);
     expect(schedule.contains('Sunday')).toEqual(true);

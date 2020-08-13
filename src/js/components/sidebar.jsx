@@ -28,10 +28,12 @@ class Sidebar extends React.Component {
     let zipCode;
     let opening;
     let closing;
+    let id;
 
     const { data } = this.props;
 
     if (data.length) {
+      id = data[0][0].Restaurant_ID;
       restaurantName = data[0][0].Restaurant_Name;
       website = data[0][0].Website;
       telephoneNumber = data[0][0].Telephone;
@@ -46,7 +48,7 @@ class Sidebar extends React.Component {
     return (
       <Wrapper>
         <div className="row">
-          <Time opening={opening} closing={closing} />
+          <Time opening={opening} closing={closing} id={id}/>
         </div>
         <div className="row">
           <Address streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />

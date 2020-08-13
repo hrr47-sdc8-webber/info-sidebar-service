@@ -31,24 +31,28 @@ class Schedule extends React.Component {
 
   render() {
     const calendar = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const { clicked, open, close, dayOfTheWeek } = this.props;
+    const { clicked, open, close, dayOfTheWeek, id } = this.props;
     const dots = '.......................................................................................';
 
     return (
-      <Wrapper clicked={clicked}>
+      <Wrapper clicked={clicked} >
         {clicked
           ? calendar.map((day) => (
             dayOfTheWeek === calendar.indexOf(day)
               ? (
                 <b>
-                  <InnerWrapper>
-                    <div>{day}</div><DotsWrapper>{dots}</DotsWrapper><div>{open}: {close}</div>
+                  <InnerWrapper key={Math.random()}>
+                    <div>
+                      {day}</div><DotsWrapper>{dots}</DotsWrapper><div>{open}: {close}
+                    </div>
                   </InnerWrapper>
                 </b>
               )
               : (
-                <InnerWrapper>
-                  <div>{day}</div><DotsWrapper>{dots}</DotsWrapper><div>{open}: {close}</div>
+                <InnerWrapper key={Math.random()}>
+                  <div key={id}>
+                    {day}</div><DotsWrapper>{dots}</DotsWrapper><div>{open}: {close}
+                    </div>
                 </InnerWrapper>
               )
           ))
@@ -63,6 +67,7 @@ Schedule.propTypes = {
   open: PropTypes.string.isRequired,
   close: PropTypes.string.isRequired,
   dayOfTheWeek: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Schedule;

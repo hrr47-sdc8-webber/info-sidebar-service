@@ -40,7 +40,7 @@ class Time extends React.Component {
     let convertedEnd = null;
     let dayOfTheWeek = null;
 
-    const { opening, closing } = this.props;
+    const { opening, closing, id } = this.props;
     const { clicked, animate } = this.state;
 
     if (opening) {
@@ -81,6 +81,7 @@ class Time extends React.Component {
         open={convertedStart}
         close={convertedEnd}
         dayOfTheWeek={dayOfTheWeek}
+        id={id}
       />
     </>
     );
