@@ -12,6 +12,7 @@ const BodyWrapper = styled.section`
   display: flex;
   flex-direction: row;
   padding: 25px;
+  height: 2000px;
 `;
 
 class App extends React.Component {
