@@ -59,6 +59,19 @@ const populateRestaurants = function(companyName, website, phone) {
   })
 };
 
+const populateRestaurantsWithID = function(companyName, website, phone) {
+  return new Promise(function (resolve, reject) {
+    connection.query(`INSERT INTO Restaurants (Restaurant_ID, Restaurant_Name, Website, Telephone) VALUES(0, "${companyName}", "${website}", "${phone}")`, function (error, results, fields) {
+      if (error) {
+        console.log(error)
+        reject(error)
+      } else {
+        resolve(results)
+      }
+    })
+  })
+};
+
 const populateAddresses = function(streetAddress, city, state, zipCode, companyName, id) {
   return new Promise(function(resolve, reject) {
     connection.query(`INSERT INTO Addresses (Street_Address, City, USA_State, Zip_Code, RestaurantID) VALUES("${streetAddress}", "${city}", "${state}", ${zipCode}, ${id});`, function(error, results, fields) {
@@ -103,6 +116,17 @@ const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
     },
   );
 });
+//shift this into promises
+const deleteTestData = () => new Promise((resolve, reject) => {
+  connection.query('delete * from Restaurants, Addresses, Ratings, Opening_Times where Restaurant_ID=?0', (error, results) => {
+    if (error) {
+      reject(error)
+    } else {
+      resolve(results)
+    }
+  })
+})
+
 
 module.exports = {
   populateRestaurants,
@@ -113,4 +137,6 @@ module.exports = {
   fetchBaseInfo,
   fetchOpenHoursInfo,
   fetchRatingsInfo,
+  populateRestaurantsWithID,
+  deleteTestData,
 };

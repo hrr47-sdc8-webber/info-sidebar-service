@@ -77,7 +77,7 @@ const rotateUp = keyframes`
     transform: rotate(0deg);
   }
 
-  10% {
+  20% {
     transform: rotate(0deg);
   }
 
@@ -93,8 +93,8 @@ const rotateUp = keyframes`
     transform: rotate(-180deg);
   }
 
-  90% {
-    transform: rotate(10deg);
+  80% {
+    transform: rotate(0deg);
   }
 
   100% {
