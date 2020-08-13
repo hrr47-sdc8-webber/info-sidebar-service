@@ -63,6 +63,7 @@ class Time extends React.Component {
     <>
       <div className="items">
         <FontAwesomeIcon
+          id="icon-testing"
           className="icons"
           icon={faClock}
           onClick={() => this.handleClick()}
