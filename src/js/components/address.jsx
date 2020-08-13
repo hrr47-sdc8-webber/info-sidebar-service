@@ -34,7 +34,7 @@ class Address extends React.Component {
     const { streetAddress, city, state, zipCode } = this.props;
 
     return (
-      <div className="items">
+      <div className="items" id="address-testing">
         <FontAwesomeIcon className="icons" icon={faMapMarkerAlt} />
         <Theme>{`  ${streetAddress}, ${city}, ${state}, ${zipCode}, USA`}</Theme>
       </div>
