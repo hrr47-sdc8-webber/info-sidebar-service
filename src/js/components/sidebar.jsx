@@ -51,7 +51,13 @@ class Sidebar extends React.Component {
           <Time opening={opening} closing={closing} id={id}/>
         </div>
         <div className="row">
-          <Address streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+          <Address
+            restaurantName={restaurantName}
+            streetAddress={streetAddress}
+            city={city}
+            state={state}
+            zipCode={zipCode}
+          />
         </div>
         <div className="row">
           <Phone telephoneNumber={telephoneNumber} />
