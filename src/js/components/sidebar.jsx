@@ -114,14 +114,16 @@ const rotateUp = keyframes`
 const Wrapper = styled.section`
   padding: 24px 32px;
   width: 25%;
+  max-width: 350px;
   margin-top: 20px;
   border: 1px solid black;
   background: white;
   display: flex;
   flex-direction: column;
-  // position: -webkit-sticky;
-  // position: sticky;
-  // top: 50px;
+  height: 525px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
 
   & .row {
     width: 100%;
