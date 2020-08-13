@@ -7,6 +7,7 @@ const helpers = require('../../../convenience-functions/parseData.js');
 const MainWrapper = styled.section`
   width: 70%;
   max-width: 900px;
+  max-height: 475px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;

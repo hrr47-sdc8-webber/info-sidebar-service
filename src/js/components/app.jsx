@@ -8,6 +8,7 @@ const axios = require('axios');
 
 const BodyWrapper = styled.section`
   width: 100%;
+  height: 2500px;
   background-color: rgb(250,250,250);
   display: flex;
   flex-direction: row;
