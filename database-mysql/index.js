@@ -40,7 +40,7 @@ const fetchRatingsInfo = (id) => new Promise((resolve, reject) => connection.que
 }));
 
 const populateRestaurants = (companyName, website, phone) => new Promise( (resolve, reject) => {
-  connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`,  (error, results) => {
+  connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`, (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -103,9 +103,9 @@ const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
 const deleteTestData = () => new Promise((resolve, reject) => {
   connection.query('delete * from Restaurants, Addresses, Ratings, Opening_Times where Restaurant_ID=?0', (error, results) => {
     if (error) {
-      reject(error)
+      reject(error);
     } else {
-      resolve(results)
+      resolve(results);
     }
   });
 });

@@ -124,9 +124,9 @@ function RestaurantInfo({
       <img className="zagat-logo" alt="The Zagat Logo" src="/imgs/z-logo-icon-red.svg" />
       <div className="review-text">THE ZAGAT REVIEW</div>
       <Ratings
-        food_rating={foodRating}
-        service_rating={serviceRating}
-        decor_rating={decorRating}
+        foodRating={foodRating}
+        serviceRating={serviceRating}
+        decorRating={decorRating}
       />
       <div className="written-review">
         {writtenReview}

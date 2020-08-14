@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDirections } from '@fortawesome/free-solid-svg-icons';
 
-
 const helpers = require('../../../convenience-functions/parseData.js');
 
 const Theme = styled.a`
@@ -21,7 +20,9 @@ const Theme = styled.a`
   }
 `;
 
-function Directions({ streetAddress, city, state, zipCode }) {
+function Directions({
+  streetAddress, city, state, zipCode,
+}) {
   const collectedProps = [];
   let queryString = null;
   if (streetAddress) {
