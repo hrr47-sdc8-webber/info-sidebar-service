@@ -23,7 +23,7 @@ it('renders website component correctly', () => {
 it('renders time component correctly', () => {
   MockDate.set(1466424490000);
   const tree = renderer
-    .create(<Time opening="9:30" closing="11:30" />)
+    .create(<Time opening="9:30" closing="11:30" id={1} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
   MockDate.reset();
@@ -31,7 +31,13 @@ it('renders time component correctly', () => {
 
 it('renders address component correctly', () => {
   const tree = renderer
-    .create(<Address streetAddress="319 Happy St" city="Solon" state="Ohio" zipCode={44139} />)
+    .create(<Address
+      restaurantName="Chucks"
+      streetAddress="319 Happy St"
+      city="Solon"
+      state="Ohio"
+      zipCode={44139}
+    />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
@@ -45,7 +51,7 @@ it('renders directions component correctly', () => {
 
 it('renders ratings component correctly', () => {
   const tree = renderer
-    .create(<Ratings food_rating="3.5" service_rating="3.5" decor_rating="3.5" />)
+    .create(<Ratings foodRating="3.5" serviceRating="3.5" decorRating="3.5" />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
@@ -53,11 +59,11 @@ it('renders ratings component correctly', () => {
 it('renders restaurant information component correctly', () => {
   const tree = renderer
     .create(<RestaurantInfo
-      food_rating="3.5"
-      service_rating="3.5"
-      decor_rating="3.5"
+      foodRating="3.5"
+      serviceRating="3.5"
+      decorRating="3.5"
       restaurantName="Happy's"
-      written_review="Some great food"
+      writtenReview="Some great food"
       sentence="Some great food"
       neighborhood="Boston"
       typeOfFood="BBQ"

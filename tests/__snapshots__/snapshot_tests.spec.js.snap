@@ -4,12 +4,14 @@ exports[`renders address component correctly 1`] = `
 <div
   className="items"
 >
+  <div />
   <svg
     aria-hidden="true"
     className="svg-inline--fa fa-map-marker-alt fa-w-12 icons"
     data-icon="map-marker-alt"
     data-prefix="fas"
     focusable="false"
+    onClick={[Function]}
     role="img"
     style={Object {}}
     viewBox="0 0 384 512"
@@ -23,6 +25,7 @@ exports[`renders address component correctly 1`] = `
   </svg>
   <a
     className="address__Theme-sc-12r5eww-0 dEGZvt"
+    onClick={[Function]}
   >
       319 Happy St, Solon, Ohio, 44139, USA
   </a>
@@ -162,7 +165,7 @@ Array [
 
 exports[`renders restaurant information component correctly 1`] = `
 <section
-  className="restaurantInfo__MainWrapper-sc-5o8o3k-0 bORpjf"
+  className="restaurantInfo__MainWrapper-sc-5o8o3k-0 cVdMvm"
 >
   <div
     className="name"
