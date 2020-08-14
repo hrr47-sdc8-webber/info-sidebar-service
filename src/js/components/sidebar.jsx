@@ -1,14 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
+
 import Time from './time.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import Address from './address.jsx';
 import Phone from './phone.jsx';
 import Website from './website.jsx';
 import Directions from './directions.jsx';
 import Map from './map.jsx';
-import PropTypes from 'prop-types';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -19,36 +18,23 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    let restaurantName;
-    let website;
-    let telephoneNumber;
-    let streetAddress;
-    let city;
-    let state;
-    let zipCode;
-    let opening;
-    let closing;
-    let id;
-
-    const { data } = this.props;
-
-    if (data.length) {
-      id = data[0][0].Restaurant_ID;
-      restaurantName = data[0][0].Restaurant_Name;
-      website = data[0][0].Website;
-      telephoneNumber = data[0][0].Telephone;
-      streetAddress = data[1][0].Street_Address;
-      city = data[1][0].City;
-      state = data[1][0].USA_State;
-      zipCode = data[1][0].Zip_Code;
-      opening = data[2][0].Start_Hour;
-      closing = data[2][0].End_Hour;
-    }
+    const {
+      RestaurantID,
+      restaurantName,
+      website,
+      telephoneNumber,
+      streetAddress,
+      city,
+      state,
+      zipCode,
+      opening,
+      closing,
+    } = this.props;
 
     return (
       <Wrapper>
         <div className="row">
-          <Time opening={opening} closing={closing} id={id}/>
+          <Time opening={opening} closing={closing} id={RestaurantID} />
         </div>
         <div className="row">
           <Address
@@ -76,8 +62,17 @@ class Sidebar extends React.Component {
   }
 }
 
-Time.propTypes = {
-  data: PropTypes.array.isRequired,
+Sidebar.propTypes = {
+  RestaurantID: PropTypes.number.isRequired,
+  restaurantName: PropTypes.string.isRequired,
+  website: PropTypes.string.isRequired,
+  telephoneNumber: PropTypes.string.isRequired,
+  streetAddress: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  zipCode: PropTypes.string.isRequired,
+  opening: PropTypes.string.isRequired,
+  closing: PropTypes.string.isRequired,
 };
 
 const rotateUp = keyframes`
@@ -102,8 +97,7 @@ const rotateUp = keyframes`
   100% {
     transform: rotate(0deg);
   }
-`
-
+`;
 
 const Wrapper = styled.section`
   padding-top: 24px;
@@ -162,8 +156,5 @@ const Wrapper = styled.section`
 
 
 `;
-
-
-
 
 export default Sidebar;

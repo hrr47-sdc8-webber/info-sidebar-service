@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Ratings from './ratings.jsx';
 
@@ -99,9 +100,9 @@ const MainWrapper = styled.section`
 `;
 
 function RestaurantInfo({
-  restaurantName, decor_rating, service_rating,
-  food_rating, written_review, sentence,
-  neighborhood, typeOfFood, averagePrice
+  restaurantName, decorRating, serviceRating,
+  foodRating, writtenReview, sentence,
+  neighborhood, typeOfFood, averagePrice,
 }) {
   return (
     <MainWrapper>
@@ -123,16 +124,27 @@ function RestaurantInfo({
       <img className="zagat-logo" alt="The Zagat Logo" src="/imgs/z-logo-icon-red.svg" />
       <div className="review-text">THE ZAGAT REVIEW</div>
       <Ratings
-        food_rating={food_rating}
-        service_rating={service_rating}
-        decor_rating={decor_rating}
+        food_rating={foodRating}
+        service_rating={serviceRating}
+        decor_rating={decorRating}
       />
       <div className="written-review">
-        {written_review}
+        {writtenReview}
       </div>
     </MainWrapper>
   );
 }
 
-export default RestaurantInfo;
+RestaurantInfo.propTypes = {
+  restaurantName: PropTypes.string.isRequired,
+  decorRating: PropTypes.string.isRequired,
+  serviceRating: PropTypes.string.isRequired,
+  foodRating: PropTypes.string.isRequired,
+  writtenReview: PropTypes.string.isRequired,
+  sentence: PropTypes.string.isRequired,
+  neighborhood: PropTypes.string.isRequired,
+  typeOfFood: PropTypes.string.isRequired,
+  averagePrice: PropTypes.number.isRequired,
+};
 
+export default RestaurantInfo;
