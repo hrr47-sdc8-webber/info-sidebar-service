@@ -89,21 +89,15 @@ const rotateUp = keyframes`
     transform: rotate(0deg);
   }
 
-  30% {
-    transform: rotate(-180deg);
-  }
 
   50% {
     transform: rotate(-180deg);
   }
 
-  70% {
+  80% {
     transform: rotate(-180deg);
   }
 
-  80% {
-    transform: rotate(0deg);
-  }
 
   100% {
     transform: rotate(0deg);
@@ -112,7 +106,10 @@ const rotateUp = keyframes`
 
 
 const Wrapper = styled.section`
-  padding: 24px 32px;
+  padding-top: 24px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 140px;
   width: 25%;
   max-width: 350px;
   margin-top: 20px;
@@ -120,7 +117,8 @@ const Wrapper = styled.section`
   background: white;
   display: flex;
   flex-direction: column;
-  height: 525px;
+  flex: 1;
+  // height: 125%;
   position: -webkit-sticky;
   position: sticky;
   top: 50px;
