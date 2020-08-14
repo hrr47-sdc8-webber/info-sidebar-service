@@ -37,13 +37,13 @@ class Schedule extends React.Component {
     const dots = '.......................................................................................';
 
     return (
-      <Wrapper clicked={clicked}>
+      <Wrapper clicked={clicked} key={1}>
         {clicked
-          ? calendar.map((day) => (
+          ? calendar.map((day, index) => (
             dayOfTheWeek === calendar.indexOf(day)
               ? (
                 <b>
-                  <InnerWrapper key={Math.random()}>
+                  <InnerWrapper key={index}>
                     <div>
                       {day}
                     </div>
@@ -57,7 +57,7 @@ class Schedule extends React.Component {
                 </b>
               )
               : (
-                <InnerWrapper key={Math.random()}>
+                <InnerWrapper key={index}>
                   <div key={id}>
                     {day}
                   </div>

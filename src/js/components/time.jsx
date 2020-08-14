@@ -80,6 +80,7 @@ class Time extends React.Component {
         close={convertedEnd}
         dayOfTheWeek={dayOfTheWeek}
         id={id}
+        key={1}
       />
     </>
     );

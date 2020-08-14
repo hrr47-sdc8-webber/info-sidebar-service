@@ -99,9 +99,9 @@ const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
     },
   );
 });
-//shift this into promises
-const deleteTestData = () => new Promise((resolve, reject) => {
-  connection.query('delete * from Restaurants, Addresses, Ratings, Opening_Times where Restaurant_ID=?0', (error, results) => {
+
+const deleteRestaurantTestData = () => new Promise((resolve, reject) => {
+  connection.query('delete * from Restaurants where Restaurant_ID=0', (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -109,6 +109,50 @@ const deleteTestData = () => new Promise((resolve, reject) => {
     }
   });
 });
+
+const deleteAddressTestData = () => new Promise((resolve, reject) => {
+  connection.query('delete * from Addresses where Restaurant_ID=0', (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+const deleteRatingsTestData = () => new Promise((resolve, reject) => {
+  connection.query('delete * from Ratings where Restaurant_ID=0', (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+const deleteTimesTestData = () => new Promise((resolve, reject) => {
+  connection.query('delete * from Opening_Times where Restaurant_ID=0', (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+const deleteTestData = () => {
+  const Promise1 = Promise.resolve(deleteRestaurantTestData);
+  const Promise2 = Promise.resolve(deleteAddressTestData);
+  const Promise3 = Promise.resolve(deleteRatingsTestData);
+  const Promise4 = Promise.resolve(deleteTimesTestData);
+  Promise.all([Promise1, Promise2, Promise3, Promise4])
+    .then(() => {
+      console.log('Deleted test user');
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+};
 
 module.exports = {
   populateRestaurants,
