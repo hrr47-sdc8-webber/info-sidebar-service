@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ReviewBox = styled.section`
@@ -49,13 +50,15 @@ const BorderBottom = styled.section`
   margin-left: 20px;
 `;
 
-function Ratings({food_rating, service_rating, decor_rating}) {
+function Ratings({
+  foodRating, serviceRating, decorRating,
+}) {
   return (
     <>
       <ReviewBox>
         <div className="innerBox">
           <div className="rating">
-            {food_rating}
+            {foodRating}
           </div>
           <div className="category">
             Food
@@ -64,7 +67,7 @@ function Ratings({food_rating, service_rating, decor_rating}) {
         <div className="border-middle" />
         <div className="innerBox">
           <div className="rating">
-            {decor_rating}
+            {decorRating}
           </div>
           <div className="category">
             Decor
@@ -73,7 +76,7 @@ function Ratings({food_rating, service_rating, decor_rating}) {
         <div className="border-middle" />
         <div className="innerBox">
           <div className="rating">
-            {service_rating}
+            {serviceRating}
           </div>
           <div className="category">
             Service
@@ -84,5 +87,11 @@ function Ratings({food_rating, service_rating, decor_rating}) {
     </>
   );
 }
+
+Ratings.propTypes = {
+  decorRating: PropTypes.string.isRequired,
+  serviceRating: PropTypes.string.isRequired,
+  foodRating: PropTypes.string.isRequired,
+};
 
 export default Ratings;

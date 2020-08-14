@@ -3,32 +3,27 @@ const mySqlConfig = require('./config.js');
 
 const connection = mysql.createConnection(mySqlConfig);
 
-const fetchBaseInfo = function(id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`SELECT * from Restaurants where Restaurant_ID=${id}`, function(error, results, fields) {
-      if (error) {
-        console.log(error)
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-};
+const fetchBaseInfo = (id) => new Promise((resolve, reject) => {
+  connection.query(`SELECT * from Restaurants where Restaurant_ID=${id}`, (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
 
-const fetchContactInfo = function(id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`SELECT Street_Address, City, USA_State, Zip_Code FROM Addresses where RestaurantID=${id};`, function(error, results, fields) {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-};
+const fetchContactInfo = (id) => new Promise((resolve, reject) => {
+  connection.query(`SELECT Street_Address, City, USA_State, Zip_Code FROM Addresses where RestaurantID=${id};`, (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
 
-const fetchOpenHoursInfo = (id) =>  new Promise((resolve, reject) => connection.query(`SELECT Start_Hour, End_Hour FROM Opening_Times where RestaurantID=${id}`, (error, results) => {
+const fetchOpenHoursInfo = (id) => new Promise((resolve, reject) => connection.query(`SELECT Start_Hour, End_Hour FROM Opening_Times where RestaurantID=${id}`, (error, results) => {
   if (error) {
     reject(error);
   } else {
@@ -36,65 +31,53 @@ const fetchOpenHoursInfo = (id) =>  new Promise((resolve, reject) => connection.
   }
 }));
 
-const fetchRatingsInfo = function(id) {
-  return new Promise((resolve, reject) => connection.query(`SELECT * FROM Ratings where RestaurantID=${id}`, (error, results) => {
+const fetchRatingsInfo = (id) => new Promise((resolve, reject) => connection.query(`SELECT * FROM Ratings where RestaurantID=${id}`, (error, results) => {
+  if (error) {
+    reject(error);
+  } else {
+    resolve(results);
+  }
+}));
+
+const populateRestaurants = (companyName, website, phone) => new Promise( (resolve, reject) => {
+  connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`, (error, results) => {
     if (error) {
       reject(error);
     } else {
       resolve(results);
     }
-  }));
-};
+  });
+});
 
-const populateRestaurants = function(companyName, website, phone) {
-  return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO Restaurants (Restaurant_Name, Website, Telephone) VALUES("${companyName}", "${website}", "${phone}")`, function (error, results, fields) {
-      if (error) {
-        console.log(error)
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-};
+const populateRestaurantsWithID = (companyN, website, phone) => new Promise((resolve, reject) => {
+  connection.query(`INSERT INTO Restaurants (Restaurant_ID, Restaurant_Name, Website, Telephone) VALUES(0, "${companyN}", "${website}", "${phone}")`, (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
 
-const populateRestaurantsWithID = function(companyName, website, phone) {
-  return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO Restaurants (Restaurant_ID, Restaurant_Name, Website, Telephone) VALUES(0, "${companyName}", "${website}", "${phone}")`, function (error, results, fields) {
-      if (error) {
-        console.log(error)
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-};
+const populateAddresses = (strAdr, cit, state, zip, name, id) => new Promise((resolve, reject) => {
+  connection.query(`INSERT INTO Addresses (Street_Address, City, USA_State, Zip_Code, RestaurantID) VALUES("${strAdr}", "${cit}", "${state}", ${zip}, ${id});`, (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
 
-const populateAddresses = function(streetAddress, city, state, zipCode, companyName, id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`INSERT INTO Addresses (Street_Address, City, USA_State, Zip_Code, RestaurantID) VALUES("${streetAddress}", "${city}", "${state}", ${zipCode}, ${id});`, function(error, results, fields) {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-}
-
-const populateStoreHours = function(start, end, companyName, id) {
-  return new Promise(function(resolve, reject) {
-    connection.query(`INSERT INTO Opening_Times(Start_Hour, End_Hour, RestaurantID) VALUES("${start}", "${end}", "${id}")`, function(error, results, fields) {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(results)
-      }
-    })
-  })
-}
+const populateStoreHours = (start, end, companyName, id) => new Promise((resolve, reject) => {
+  connection.query(`INSERT INTO Opening_Times(Start_Hour, End_Hour, RestaurantID) VALUES("${start}", "${end}", "${id}")`, (error, results) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(results);
+    }
+  });
+});
 
 const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
   companyName, averagePrice, singleSentenceDescriptor,
@@ -120,13 +103,12 @@ const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
 const deleteTestData = () => new Promise((resolve, reject) => {
   connection.query('delete * from Restaurants, Addresses, Ratings, Opening_Times where Restaurant_ID=?0', (error, results) => {
     if (error) {
-      reject(error)
+      reject(error);
     } else {
-      resolve(results)
+      resolve(results);
     }
-  })
-})
-
+  });
+});
 
 module.exports = {
   populateRestaurants,

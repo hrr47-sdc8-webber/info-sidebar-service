@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import Schedule from './schedule.jsx';
 import styled from 'styled-components';
 
-
-
 const helpers = require('../../../convenience-functions/parseData.js');
 
 class Time extends React.Component {
@@ -72,7 +70,7 @@ class Time extends React.Component {
         <FontAwesomeIcon
           icon={faCaretDown}
           onClick={() => this.handleClick()}
-          className={animate ? 'arrow flip' : 'arrow' }
+          className={animate ? 'arrow flip' : 'arrow'}
           onAnimationEnd={() => this.setState({ animate: false })}
         />
       </div>

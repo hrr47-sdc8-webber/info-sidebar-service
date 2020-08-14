@@ -19,7 +19,6 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      sidebarData: [],
       restaurantName: '',
       website: '',
       telephoneNumber: '',
@@ -29,10 +28,10 @@ class App extends React.Component {
       zipCode: null,
       opening: '',
       closing: '',
-      food_rating: '',
-      decor_rating: '',
-      service_rating: '',
-      written_review: '',
+      foodRating: '',
+      decorRating: '',
+      serviceRating: '',
+      writtenReview: '',
       singleSentenceDescriptor: '',
       neighborhood: '',
       typeOfFood: '',
@@ -47,11 +46,10 @@ class App extends React.Component {
   }
 
   fetchData() {
-    console.log(window.location.pathname)
     axios.get(`restaurants${window.location.pathname}`)
       .then((data) => {
         this.setState({
-          sidebarData: data.data,
+          restaurantID: data.data[0][0].Restaurant_ID,
           restaurantName: data.data[0][0].Restaurant_Name,
           website: data.data[0][0].Website,
           telephoneNumber: data.data[0][0].Telephone,
@@ -61,10 +59,10 @@ class App extends React.Component {
           zipCode: data.data[1][0].Zip_Code,
           opening: data.data[2][0].Start_Hour,
           closing: data.data[2][0].End_Hour,
-          food_rating: data.data[3][0].food_rating,
-          decor_rating: data.data[3][0].decor_rating,
-          service_rating: data.data[3][0].service_rating,
-          written_review: data.data[3][0].written_review,
+          foodRating: data.data[3][0].food_rating,
+          decorRating: data.data[3][0].decor_rating,
+          serviceRating: data.data[3][0].service_rating,
+          writtenReview: data.data[3][0].written_review,
           singleSentenceDescriptor: data.data[3][0].singleSentenceDescriptor,
           neighborhood: data.data[3][0].neighborhood,
           typeOfFood: data.data[3][0].typeOfFood,
@@ -78,25 +76,36 @@ class App extends React.Component {
 
   render() {
     const {
-      sidebarData, restaurantName, website, telephoneNumber, streetAddress,
-      city, state, zipCode, opening, closing, food_rating, decor_rating,
-      service_rating, written_review, singleSentenceDescriptor,
+      restaurantName, restaurantID, website, telephoneNumber, streetAddress,
+      city, state, zipCode, opening, closing, foodRating, decorRating,
+      serviceRating, writtenReview, singleSentenceDescriptor,
       neighborhood, typeOfFood, averagePrice,
     } = this.state;
     return (
       <BodyWrapper>
         <RestaurantInfo
           restaurantName={restaurantName}
-          decor_rating={decor_rating}
-          service_rating={service_rating}
-          food_rating={food_rating}
-          written_review={written_review}
+          decorRating={decorRating}
+          serviceRating={serviceRating}
+          foodRating={foodRating}
+          writtenReview={writtenReview}
           sentence={singleSentenceDescriptor}
           neighborhood={neighborhood}
           typeOfFood={typeOfFood}
           averagePrice={averagePrice}
         />
-        <Sidebar data={sidebarData} />
+        <Sidebar
+          restaurantID={restaurantID}
+          restaurantName={restaurantName}
+          website={website}
+          telephoneNumber={telephoneNumber}
+          streetAddress={streetAddress}
+          city={city}
+          state={state}
+          zipCode={zipCode}
+          opening={opening}
+          closing={closing}
+        />
       </BodyWrapper>
     );
   }
