@@ -2,8 +2,8 @@ const faker = require('faker');
 const db = require('./database-mysql/index.js');
 const helpers = require('./convenience-functions/randomData.js');
 
-module.exports.seedOne = function() {
-  const companyName = faker.company.companyName();
+module.exports.seedOne = () => {
+  const companyName = 'Test Company';
   const website = faker.internet.url();
   const streetAddress = faker.address.streetAddress();
   const city = faker.address.city();
@@ -22,27 +22,25 @@ module.exports.seedOne = function() {
   const typeOfFood = faker.lorem.words(1);
   let idNumber;
 
-  return Promise.resolve(db.populateRestaurantsWithID(companyName, website, phone))
+  db.populateRestaurants(companyName, website, phone)
     .then((data) => {
       idNumber = data.insertId;
-      return db.populateAddresses(streetAddress, city, state, zip, companyName, idNumber);
+      db.populateAddresses(streetAddress, city, state, zip, companyName, idNumber);
     })
+    .then(() => db.populateStoreHours(start, end, companyName, idNumber))
+    .then(() => db.populateRatings(
+      scoreOne, scoreTwo, scoreThree,
+      writtenReview, companyName, averagePrice,
+      singleSentenceDescriptor,
+      neighborhood, typeOfFood, idNumber,
+    ))
     .then(() => {
-      return db.populateStoreHours(start, end, companyName, idNumber);
-    })
-    .then(() => {
-      return db.populateRatings(
-        scoreOne, scoreTwo, scoreThree,
-        writtenReview, companyName, averagePrice,
-        singleSentenceDescriptor,
-        neighborhood, typeOfFood, idNumber,
-      );
+      Promise.resolve(idNumber);
     })
     .catch((error) => {
       console.log(error);
     });
+
 };
 
-module.exports.deleteTestData = () => {
-  return db.deleteTestData();
-};
+module.exports.deleteTestData = (dbID) => db.deleteTestData(dbID);

@@ -1,3 +1,7 @@
+/*  Execute this file from the command line by typing:
+ *    mysql -u <USER> < schema.sql
+*/
+
 DROP DATABASE IF EXISTS zagat;
 
 CREATE DATABASE zagat;

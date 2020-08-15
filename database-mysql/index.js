@@ -49,8 +49,8 @@ const populateRestaurants = (companyName, website, phone) => new Promise( (resol
   });
 });
 
-const populateRestaurantsWithID = (companyN, website, phone) => new Promise((resolve, reject) => {
-  connection.query(`INSERT INTO Restaurants (Restaurant_ID, Restaurant_Name, Website, Telephone) VALUES(0, "${companyN}", "${website}", "${phone}")`, (error, results) => {
+const returnsLength = () => new Promise((resolve, reject) => {
+  connection.query('select MAX(Restaurant_ID) from Restaurants;', (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -100,8 +100,8 @@ const populateRatings = (foodRating, decorRating, serviceRating, writtenReview,
   );
 });
 
-const deleteRestaurantTestData = () => new Promise((resolve, reject) => {
-  connection.query('delete * from Restaurants where Restaurant_ID=0', (error, results) => {
+const deleteRestaurantTestData = (num) => new Promise((resolve, reject) => {
+  connection.query(`delete from Restaurants where Restaurant_ID=${num}`, (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -110,8 +110,8 @@ const deleteRestaurantTestData = () => new Promise((resolve, reject) => {
   });
 });
 
-const deleteAddressTestData = () => new Promise((resolve, reject) => {
-  connection.query('delete * from Addresses where Restaurant_ID=0', (error, results) => {
+const deleteAddressTestData = (num) => new Promise((resolve, reject) => {
+  connection.query(`delete from Addresses where RestaurantID=${num}`, (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -120,8 +120,8 @@ const deleteAddressTestData = () => new Promise((resolve, reject) => {
   });
 });
 
-const deleteRatingsTestData = () => new Promise((resolve, reject) => {
-  connection.query('delete * from Ratings where Restaurant_ID=0', (error, results) => {
+const deleteRatingsTestData = (num) => new Promise((resolve, reject) => {
+  connection.query(`delete from Ratings where id=${num}`, (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -130,8 +130,8 @@ const deleteRatingsTestData = () => new Promise((resolve, reject) => {
   });
 });
 
-const deleteTimesTestData = () => new Promise((resolve, reject) => {
-  connection.query('delete * from Opening_Times where Restaurant_ID=0', (error, results) => {
+const deleteTimesTestData = (num) => new Promise((resolve, reject) => {
+  connection.query(`delete from Opening_Times where RestaurantID=${num}`, (error, results) => {
     if (error) {
       reject(error);
     } else {
@@ -140,17 +140,14 @@ const deleteTimesTestData = () => new Promise((resolve, reject) => {
   });
 });
 
-const deleteTestData = () => {
-  const Promise1 = Promise.resolve(deleteRestaurantTestData);
-  const Promise2 = Promise.resolve(deleteAddressTestData);
-  const Promise3 = Promise.resolve(deleteRatingsTestData);
-  const Promise4 = Promise.resolve(deleteTimesTestData);
+const deleteTestData = (num) => {
+  const Promise1 = Promise.resolve(deleteRestaurantTestData(num));
+  const Promise2 = Promise.resolve(deleteAddressTestData(num));
+  const Promise3 = Promise.resolve(deleteRatingsTestData(num));
+  const Promise4 = Promise.resolve(deleteTimesTestData(num));
   Promise.all([Promise1, Promise2, Promise3, Promise4])
-    .then(() => {
-      console.log('Deleted test user');
-    })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
     });
 };
 
@@ -163,6 +160,6 @@ module.exports = {
   fetchBaseInfo,
   fetchOpenHoursInfo,
   fetchRatingsInfo,
-  populateRestaurantsWithID,
   deleteTestData,
+  returnsLength,
 };
