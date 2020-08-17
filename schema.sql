@@ -2,11 +2,11 @@
  *    mysql -u <USER> < schema.sql
 */
 
-DROP DATABASE IF EXISTS zagat;
+DROP DATABASE IF EXISTS zagatRestaurantinformation;
 
-CREATE DATABASE zagat;
+CREATE DATABASE zagatRestaurantinformation;
 
-USE zagat;
+USE zagatRestaurantinformation;
 
 CREATE TABLE Restaurants (
   Restaurant_ID int NOT NULL AUTO_INCREMENT,
