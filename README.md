@@ -17,7 +17,12 @@
 
 ## Usage
 
-> Some usage instructions
+-- Run npm run-script seed to seed the db.
+-- Npm start should start the server. It currently runs on a hardcoded port inside of server/start.js. Feel free to modify.
+-- You can find the main server routes in server/index.js.
+-- You can find the major components and how they are pieced together in app.jsx.
+-- Two components are living inside of app.jsx, the sidebar and the restaurant information.
+
 
 ## Requirements
 
