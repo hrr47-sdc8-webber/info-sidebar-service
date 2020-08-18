@@ -105,14 +105,14 @@ const Wrapper = styled.section`
   padding-right: 32px;
   padding-bottom: 140px;
   width: 25%;
-  max-width: 350px;
+  max-width: 365px;
   margin-top: 20px;
+  margin-right: 40px;
   border: 1px solid black;
   background: white;
   display: flex;
   flex-direction: column;
   flex: 1;
-  // height: 125%;
   position: -webkit-sticky;
   position: sticky;
   top: 50px;

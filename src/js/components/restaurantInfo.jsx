@@ -10,11 +10,12 @@ const MainWrapper = styled.section`
   max-width: 900px;
   max-height: 475px;
   margin-top: 20px;
+  margin-left: 40px;
   display: flex;
   flex-direction: column;
   background-color: white;
   border: 1px solid black;
-  margin-right: 25px;
+  margin-right: 40px;
 
 
   & .review-text {

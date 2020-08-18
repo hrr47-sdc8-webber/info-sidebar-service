@@ -11,7 +11,7 @@ const BodyWrapper = styled.section`
   background-color: rgb(250,250,250);
   display: flex;
   flex-direction: row;
-  padding: 25px;
+  justify-content: center;
 `;
 
 class App extends React.Component {

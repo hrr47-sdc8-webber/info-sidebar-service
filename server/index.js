@@ -6,9 +6,9 @@ const app = express();
 
 app.use(express.static('dist'));
 app.use(express.static('public'));
+app.use(cors());
 
 app.use('/:id', express.static('dist'));
-app.use(cors());
 
 app.get('/:copyId/restaurants/:id', (req, res) => {
   const Promise1 = Promise.resolve(db.fetchBaseInfo(req.params.id));
