@@ -46,7 +46,7 @@ class App extends React.Component {
   }
 
   fetchData() {
-    axios.get(`restaurants${window.location.pathname}`)
+    axios.get(`http://localhost:3001/0/restaurants${window.location.pathname}`)
       .then((data) => {
         this.setState({
           restaurantID: data.data[0][0].Restaurant_ID,
@@ -113,4 +113,4 @@ class App extends React.Component {
 
 export default App;
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('restaurantInfo'));

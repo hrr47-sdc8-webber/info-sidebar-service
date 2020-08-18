@@ -1,13 +1,14 @@
 const express = require('express');
 const db = require('../database-mysql/index.js');
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
 
 app.use(express.static('dist'));
 app.use(express.static('public'));
 
 app.use('/:id', express.static('dist'));
+app.use(cors());
 
 app.get('/:copyId/restaurants/:id', (req, res) => {
   const Promise1 = Promise.resolve(db.fetchBaseInfo(req.params.id));
