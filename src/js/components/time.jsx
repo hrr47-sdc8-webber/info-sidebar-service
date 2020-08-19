@@ -10,27 +10,27 @@ const helpers = require('../../../convenience-functions/parseData.js');
 class Time extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      clicked: false,
-      animate: false,
-    };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    const { clicked } = this.state;
-    this.setState({
-      clicked: !clicked,
-      animate: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        animate: false,
-      });
-    }, 350);
-  }
+  //   this.state = {
+  //     clicked: false,
+  //     animate: false,
+  //   };
+  //   this.handleClick = this.handleClick.bind(this);
+  // }
 
+  // handleClick() {
+  //   const { clicked } = this.state;
+  //   this.setState({
+  //     clicked: !clicked,
+  //     animate: true,
+  //   });
+  //   setTimeout(() => {
+  //     this.setState({
+  //       animate: false,
+  //     });
+  //   }, 350);
+  // }
 
   render() {
     let showOpenStatus = null;
@@ -38,8 +38,8 @@ class Time extends React.Component {
     let convertedEnd = null;
     let dayOfTheWeek = null;
 
-    const { opening, closing, id } = this.props;
-    const { clicked, animate } = this.state;
+    const { opening, closing, id , clicked, animate, handleClick } = this.props;
+    // const { clicked, animate } = this.state;
 
     if (opening) {
       const today = new Date();
@@ -51,9 +51,9 @@ class Time extends React.Component {
       convertedEnd = helpers.convertsFormOfTime(closing);
 
       if (timeNow >= startTime && timeNow <= endTime) {
-        showOpenStatus = <h1 className="status" onClick={() => {this.handleClick()}}>Open Now • {convertedStart} - {convertedEnd}    </h1>;
+        showOpenStatus = <h1 className="status" onClick={() => {handleClick()}}>Open Now • {convertedStart} - {convertedEnd}    </h1>;
       } else {
-        showOpenStatus = <h1 className="status" onClick={() => {this.handleClick()}}>Closed Now • {convertedStart} - {convertedEnd}    </h1>;
+        showOpenStatus = <h1 className="status" onClick={() => {handleClick()}}>Closed Now • {convertedStart} - {convertedEnd}    </h1>;
       }
     }
 
@@ -64,14 +64,14 @@ class Time extends React.Component {
           id="icon-testing"
           className="icons"
           icon={faClock}
-          onClick={() => this.handleClick()}
+          onClick={() => handleClick()}
         />
         { showOpenStatus}
         <FontAwesomeIcon
           icon={faCaretDown}
-          onClick={() => this.handleClick()}
+          onClick={() => handleClick()}
           className={animate ? 'arrow flip' : 'arrow'}
-          onAnimationEnd={() => this.setState({ animate: false })}
+          // onAnimationEnd={() => this.setState({ animate: false })}
         />
       </div>
       <Schedule

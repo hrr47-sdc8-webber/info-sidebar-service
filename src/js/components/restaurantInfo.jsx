@@ -8,13 +8,20 @@ const helpers = require('../../../convenience-functions/parseData.js');
 const MainWrapper = styled.section`
   width: 70%;
   max-width: 900px;
-  max-height: 475px;
+  @media (max-width: 960px) {
+    width: auto;
+    max-width: 920px;
+    margin-right: 40px;
+    padding-bottom: 20px;
+  }
+  @media (min-width: 960px) {
+    max-height: 475px;
+  }
   margin-top: 20px;
   margin-left: 40px;
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 1px solid black;
   margin-right: 40px;
 
 
@@ -43,7 +50,7 @@ const MainWrapper = styled.section`
     border-bottom: 1px solid black;
     margin-bottom: 3px;
     margin-left: 20px;
-    width: 90%;
+    width: 82%;
   }
 
   & .zagat-logo {
@@ -52,7 +59,7 @@ const MainWrapper = styled.section`
     border: 2px white solid;
     border-radius: 16px;
     margin-top: -25px;
-    margin-left: 83.3%;
+    margin-left: 75%;
   }
 
   & .horizontal-wrapper {

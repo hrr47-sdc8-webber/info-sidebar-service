@@ -10,8 +10,23 @@ const BodyWrapper = styled.section`
   width: 100%;
   background-color: rgb(250,250,250);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  @media (min-width: 960px) {
+    flex-direction: row;
+  }
   justify-content: center;
+
+  & #hr {
+    @media (max-width: 960px) {
+      width: 100%;
+      color: DCDCDC;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+    @media (min-width: 960px) {
+      display: none;
+    }
+  }
 `;
 
 class App extends React.Component {
@@ -94,6 +109,9 @@ class App extends React.Component {
           typeOfFood={typeOfFood}
           averagePrice={averagePrice}
         />
+        <div id="hr">
+          <hr />
+        </div>
         <Sidebar
           restaurantID={restaurantID}
           restaurantName={restaurantName}
