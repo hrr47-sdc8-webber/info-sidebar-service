@@ -12,9 +12,24 @@ import Map from './map.jsx';
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      clicked: false,
+      animate: false,
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { clicked } = this.state;
+    this.setState({
+      clicked: !clicked,
+      animate: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        animate: false,
+      });
+    }, 350);
   }
 
   render() {
@@ -31,10 +46,22 @@ class Sidebar extends React.Component {
       closing,
     } = this.props;
 
+    const {
+      animate,
+      clicked,
+    } = this.state;
+
     return (
-      <Wrapper>
+      <Wrapper clicked={clicked}>
         <div className="row">
-          <Time opening={opening} closing={closing} id={RestaurantID} />
+          <Time
+            opening={opening}
+            closing={closing}
+            id={RestaurantID}
+            handleClick={this.handleClick}
+            clicked={clicked}
+            animate={animate}
+          />
         </div>
         <div className="row">
           <Address
@@ -54,7 +81,7 @@ class Sidebar extends React.Component {
         <div className="row">
           <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
         </div>
-        <div className="row">
+        <div className="row lastRow">
           <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
         </div>
       </Wrapper>
@@ -100,22 +127,39 @@ const rotateUp = keyframes`
 `;
 
 const Wrapper = styled.section`
-  padding-top: 24px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 140px;
-  width: 25%;
-  max-width: 365px;
-  margin-top: 20px;
+
+  @media (max-width: 960px) {
+    width: auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-left: 72px;
+    max-height: ${(props) => (props.clicked ? '400px' : '230px')}
+  }
+  @media (max-width: 600px) {
+    max-height: 600px;
+    padding-right:32px;
+    padding-left: 20px;
+  }
+  @media (min-width: 960px) {
+    padding-left: 32px;
+    max-width: 365px;
+    padding-bottom: 140px;
+    width: 25%;
+    padding-top: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+    top: 0px;
+    bottom: 100px;
+    margin-top: 20px;
+  }
   margin-right: 40px;
-  border: 1px solid black;
   background: white;
   display: flex;
   flex-direction: column;
   flex: 1;
   position: -webkit-sticky;
   position: sticky;
-  top: 50px;
+  top: -1000px;
 
   & .row {
     width: 100%;
@@ -124,6 +168,14 @@ const Wrapper = styled.section`
     margin-bottom: 13px;
     font: 13.5px 'Calibre-Regular';
     letter-space: .013em;
+    @media (max-width: 960px) {
+      width: 50%;
+      padding-right: 0px;
+      padding-top: 0px;
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   & .row .items {
@@ -152,6 +204,18 @@ const Wrapper = styled.section`
 
   & .row .items .flip {
     animation-play-state: running;
+  }
+
+  & .lastRow {
+    @media (max-width: 960px) {
+      position: inherit;
+      bottom: 800px;
+      left: 500px;
+    }
+
+    @media (max-width: 600px) {
+      position: static;
+      width: 100%;
   }
 
 
