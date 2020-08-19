@@ -96,7 +96,7 @@ function Modal({
             X
           </Button>
           <iframe
-            title="restaurantMap"
+            title="restaurantModal"
             width="100%"
             height="175%"
             cookieFlags="samesite=none;secure"
