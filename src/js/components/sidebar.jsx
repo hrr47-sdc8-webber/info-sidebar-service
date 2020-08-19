@@ -53,36 +53,38 @@ class Sidebar extends React.Component {
 
     return (
       <Wrapper clicked={clicked}>
-        <div className="row">
-          <Time
-            opening={opening}
-            closing={closing}
-            id={RestaurantID}
-            handleClick={this.handleClick}
-            clicked={clicked}
-            animate={animate}
-          />
-        </div>
-        <div className="row">
-          <Address
-            restaurantName={restaurantName}
-            streetAddress={streetAddress}
-            city={city}
-            state={state}
-            zipCode={zipCode}
-          />
-        </div>
-        <div className="row">
-          <Phone telephoneNumber={telephoneNumber} />
-        </div>
-        <div className="row">
-          <Website website={website} />
-        </div>
-        <div className="row">
-          <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
-        </div>
-        <div className="row lastRow">
-          <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+        <div id="inner">
+          <div className="row">
+            <Time
+              opening={opening}
+              closing={closing}
+              id={RestaurantID}
+              handleClick={this.handleClick}
+              clicked={clicked}
+              animate={animate}
+            />
+          </div>
+          <div className="row">
+            <Address
+              restaurantName={restaurantName}
+              streetAddress={streetAddress}
+              city={city}
+              state={state}
+              zipCode={zipCode}
+            />
+          </div>
+          <div className="row">
+            <Phone telephoneNumber={telephoneNumber} />
+          </div>
+          <div className="row">
+            <Website website={website} />
+          </div>
+          <div className="row">
+            <Directions streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+          </div>
+          <div className="row lastRow">
+            <Map streetAddress={streetAddress} city={city} state={state} zipCode={zipCode} />
+          </div>
         </div>
       </Wrapper>
     );
@@ -151,17 +153,24 @@ const Wrapper = styled.section`
     top: 0px;
     bottom: 100px;
     margin-top: 20px;
+    height: 1000px;
   }
   margin-right: 40px;
   background: white;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  position: -webkit-sticky;
-  position: sticky;
-  top: -1000px;
 
-  & .row {
+
+
+  & #inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+
+  }
+
+  & #inner .row {
     width: 100%;
     text-decoration: none;
     margin-top: 13px;
@@ -178,37 +187,38 @@ const Wrapper = styled.section`
     }
   }
 
-  & .row .items {
+  & #inner .row .items {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-right: 5%;
   }
 
-  & .row .items .status {
+  & #inner .row .items .status {
     font-size: 15px;
     margin: 0px;
   }
 
-  & .row .items .icons {
+  & #inner .row .items .icons {
     margin-right: 24px;
 
   }
 
-  & .row .items .arrow {
+  & #inner .row .items .arrow {
     display: inline-block;
     margin-left: 5px;
     animation: ${rotateUp} 700ms linear infinite;
     animation-play-state: paused;
   }
 
-  & .row .items .flip {
+  & #inner .row .items .flip {
     animation-play-state: running;
   }
 
-  & .lastRow {
+  & #inner .lastRow {
     @media (max-width: 960px) {
-      position: inherit;
+      position: -webkit-sticky;
+      position: sticky;
       bottom: 800px;
       left: 500px;
     }
