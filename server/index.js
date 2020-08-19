@@ -1,6 +1,6 @@
 const express = require('express');
-const db = require('../database-mysql/index.js');
 const cors = require('cors');
+const db = require('../database-mysql/index.js');
 
 const app = express();
 
