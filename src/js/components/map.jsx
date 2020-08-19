@@ -17,6 +17,7 @@ function Map({streetAddress, city, state, zipCode }) {
       width="100%"
       height="175%"
       frameBorder="0"
+      cookieFlags="samesite=none;secure"
       style={{ border: '0' }}
       src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDPIUHkZ4FNCluRm_Vbm-Hp3pjqg42-Anw
       &q=${queryString}`}
