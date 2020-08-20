@@ -53,6 +53,10 @@ const Backdrop = styled.section`
   color: #FFFFFF;
   font-size: 18px;
   animation: ${(props) => (props.clicked ? growMixin : shrinkMixin)}
+
+  & iframe {
+    z-index: 601;
+  }
 `;
 
 const Button = styled.button`
@@ -62,7 +66,7 @@ const Button = styled.button`
   border-radius: 50%;
   top: 10px;
   right: 25px;
-  z-index: 601;
+  z-index: 602;
   background-color: rgb(16, 24, 32);
   color: #FFFFFF;
   border: none;
@@ -101,7 +105,7 @@ function Modal({
             height="175%"
             cookieFlags="samesite=none;secure"
             frameBorder="0"
-            style={{ border: '0' }}
+            style={{ 'z-index': '601' }}
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDPIUHkZ4FNCluRm_Vbm-Hp3pjqg42-Anw
             &q=${queryString}`}
             allowFullScreen
