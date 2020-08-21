@@ -7,57 +7,39 @@ import styled from 'styled-components';
 
 const helpers = require('../../../convenience-functions/parseData.js');
 
-class Time extends React.Component {
-  constructor(props) {
-    super(props);
+function Time(props) {
+  let showOpenStatus = null;
+  let convertedStart = null;
+  let convertedEnd = null;
+  let dayOfTheWeek = null;
+
+  const {
+    opening,
+    closing,
+    id,
+    clicked,
+    animate,
+    handleClick
+  } = props;
+  // const { clicked, animate } = this.state;
+
+  if (opening) {
+    const today = new Date();
+    const timeNow = helpers.turnsClockTimeIntoTotalMinutes(`${today.getHours()}:${today.getMinutes()}`);
+    dayOfTheWeek = today.getDay();
+    const startTime = helpers.turnsClockTimeIntoTotalMinutes(opening);
+    const endTime = helpers.turnsClockTimeIntoTotalMinutes(closing);
+    convertedStart = helpers.convertsFormOfTime(opening);
+    convertedEnd = helpers.convertsFormOfTime(closing);
+
+    if (timeNow >= startTime && timeNow <= endTime) {
+      showOpenStatus = <h1 className="status" onClick={() => {handleClick()}}>Open Now • {convertedStart} - {convertedEnd}    </h1>;
+    } else {
+      showOpenStatus = <h1 className="status" onClick={() => {handleClick()}}>Closed Now • {convertedStart} - {convertedEnd}    </h1>;
+    }
   }
 
-  //   this.state = {
-  //     clicked: false,
-  //     animate: false,
-  //   };
-  //   this.handleClick = this.handleClick.bind(this);
-  // }
-
-  // handleClick() {
-  //   const { clicked } = this.state;
-  //   this.setState({
-  //     clicked: !clicked,
-  //     animate: true,
-  //   });
-  //   setTimeout(() => {
-  //     this.setState({
-  //       animate: false,
-  //     });
-  //   }, 350);
-  // }
-
-  render() {
-    let showOpenStatus = null;
-    let convertedStart = null;
-    let convertedEnd = null;
-    let dayOfTheWeek = null;
-
-    const { opening, closing, id , clicked, animate, handleClick } = this.props;
-    // const { clicked, animate } = this.state;
-
-    if (opening) {
-      const today = new Date();
-      const timeNow = helpers.turnsClockTimeIntoTotalMinutes(`${today.getHours()}:${today.getMinutes()}`);
-      dayOfTheWeek = today.getDay();
-      const startTime = helpers.turnsClockTimeIntoTotalMinutes(opening);
-      const endTime = helpers.turnsClockTimeIntoTotalMinutes(closing);
-      convertedStart = helpers.convertsFormOfTime(opening);
-      convertedEnd = helpers.convertsFormOfTime(closing);
-
-      if (timeNow >= startTime && timeNow <= endTime) {
-        showOpenStatus = <h1 className="status" onClick={() => {handleClick()}}>Open Now • {convertedStart} - {convertedEnd}    </h1>;
-      } else {
-        showOpenStatus = <h1 className="status" onClick={() => {handleClick()}}>Closed Now • {convertedStart} - {convertedEnd}    </h1>;
-      }
-    }
-
-    return (
+  return (
     <>
       <div className="items">
         <FontAwesomeIcon
@@ -83,13 +65,16 @@ class Time extends React.Component {
         key={1}
       />
     </>
-    );
-  }
+  );
 }
 
 Time.propTypes = {
   opening: PropTypes.string.isRequired,
   closing: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  clicked: PropTypes.bool.isRequired,
+  animate: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Time;

@@ -109,19 +109,15 @@ const rotateUp = keyframes`
     transform: rotate(0deg);
   }
 
-  20% {
-    transform: rotate(0deg);
+  100% {
+    transform: rotate(180deg);
   }
+`;
 
-
-  50% {
-    transform: rotate(-180deg);
+const rotateDown = keyframes`
+  0% {
+    transform: rotate(180deg);
   }
-
-  80% {
-    transform: rotate(-180deg);
-  }
-
 
   100% {
     transform: rotate(0deg);
@@ -153,7 +149,7 @@ const Wrapper = styled.section`
     top: 0px;
     bottom: 100px;
     margin-top: 20px;
-    height: 1000px;
+    height: 1200px;
   }
   margin-right: 40px;
   background: white;
@@ -207,6 +203,7 @@ const Wrapper = styled.section`
   & #inner .row .items .arrow {
     display: inline-block;
     margin-left: 5px;
+    ${(props) => (props.clicked ? )}
     animation: ${rotateUp} 700ms linear infinite;
     animation-play-state: paused;
   }
