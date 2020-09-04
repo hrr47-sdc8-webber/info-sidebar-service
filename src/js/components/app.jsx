@@ -61,27 +61,27 @@ class App extends React.Component {
   }
 
   fetchData() {
-    axios.get(`http://localhost:3002/1/restaurants${window.location.pathname}`)
-      .then((data) => {
+    axios.get(`http://localhost:3002/restaurants`)
+      .then(({data}) => {
+        console.log(data);
         this.setState({
-          restaurantID: data.data[0][0].Restaurant_ID,
-          restaurantName: data.data[0][0].Restaurant_Name,
-          website: data.data[0][0].Website,
-          telephoneNumber: data.data[0][0].Telephone,
-          streetAddress: data.data[1][0].Street_Address,
-          city: data.data[1][0].City,
-          state: data.data[1][0].USA_State,
-          zipCode: data.data[1][0].Zip_Code,
-          opening: data.data[2][0].Start_Hour,
-          closing: data.data[2][0].End_Hour,
-          foodRating: data.data[3][0].food_rating,
-          decorRating: data.data[3][0].decor_rating,
-          serviceRating: data.data[3][0].service_rating,
-          writtenReview: data.data[3][0].written_review,
-          singleSentenceDescriptor: data.data[3][0].singleSentenceDescriptor,
-          neighborhood: data.data[3][0].neighborhood,
-          typeOfFood: data.data[3][0].typeOfFood,
-          averagePrice: data.data[3][0].average_price,
+          restaurantName: data.companyName,
+          website: data.website,
+          telephoneNumber: data.phone,
+          streetAddress: data.streetAddress,
+          city: data.city,
+          state: data.state,
+          zipCode: data.zip,
+          opening: data.start,
+          closing: data.end,
+          foodRating: data.scoreOne,
+          decorRating: data.scoreTwo,
+          serviceRating: data.scoreThree,
+          writtenReview: data.writtenReview,
+          singleSentenceDescriptor: data.singleSentenceDescriptor,
+          neighborhood: data.neighborhood,
+          typeOfFood: data.typeOfFood,
+          averagePrice: data.averagePrice,
         });
       })
       .catch((error) => {
