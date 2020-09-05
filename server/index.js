@@ -2,7 +2,8 @@ const express = require('express');
 const db = require('../database-mongodb/index.js');
 const mongoose = require('mongoose');
 const cors = require('cors');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var nr = require('newrelic');
 
 
 const app = express();
@@ -21,5 +22,15 @@ app.get('/restaurants', (req, res) => {
     }
   })
 });
+
+app.get('/restaurants/all', (req, res) => {
+  db.Restaurants.find({}, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(data);
+    }
+  })
+})
 
 module.exports = app;

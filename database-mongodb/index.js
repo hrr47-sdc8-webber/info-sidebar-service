@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var nr = require('newrelic');
+
 
 const url = `mongodb+srv://Henry:henry@cluster0.8a9be.mongodb.net/zagat?retryWrites=true&w=majority`;
 
