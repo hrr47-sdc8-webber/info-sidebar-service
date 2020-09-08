@@ -61,7 +61,7 @@ class App extends React.Component {
   }
 
   fetchData() {
-    axios.get(`http://localhost:3002/restaurants`)
+    axios.get(`http://localhost:8080/restaurants`)
       .then(({data}) => {
         console.log(data);
         this.setState({

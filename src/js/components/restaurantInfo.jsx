@@ -133,7 +133,7 @@ function RestaurantInfo({
       </div>
       <div className="horizontal-rule" />
       <div className="horizontal-rule" />
-      <img className="zagat-logo" alt="The Zagat Logo" src="http://localhost:3002/imgs/z-logo-icon-red.svg" />
+      <img className="zagat-logo" alt="The Zagat Logo" src="http://localhost:8080/imgs/z-logo-icon-red.svg" />
       <div className="review-text">THE ZAGAT REVIEW</div>
       <Ratings
         foodRating={foodRating}
